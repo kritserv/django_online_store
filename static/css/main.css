@@ -1,0 +1,34 @@
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-items-center {
+      align-items: center;
+}
+
+li a svg {
+  font-size: 30px;
+}
+
+li a p {
+  text-align: right;
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #9fc5e8;
+}
+
+input.form-control {
+  align-self: center;
+  width: 15em;
+  min-width: 200px;
+  max-width: 320px;
+}
+
+a.nav-link {
+  margin-left: 6px;
+  margin-right: 6px;
+}
