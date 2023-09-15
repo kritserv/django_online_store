@@ -1,3 +1,3 @@
-# ddice_online_shop_django_mysql_docker
+# ddice online shop docker django mysql
 
 work in progress..
