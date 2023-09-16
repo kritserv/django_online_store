@@ -10,25 +10,67 @@
       align-items: center;
 }
 
+#ddice-home {
+  font-family: b;
+}
+
 li a svg {
-  font-size: 30px;
+  font-size: 26px;
+}
+
+div.d-flex.align-items-center {
+  text-align: center;  
 }
 
 li a p {
-  text-align: right;
-  margin-right: 5px;
-  margin-left: 5px;
-  color: #9fc5e8;
+  text-align: center;
+  margin-right: 2px;
+  margin-left: 2px;
 }
 
 input.form-control {
   align-self: center;
-  width: 15em;
-  min-width: 200px;
-  max-width: 320px;
+  width: 12em;
+  min-width: 120px;
+  max-width: 280px;
+  margin-top: 8px;
+  margin-bottom: 7px;
+}
+
+button.btn.btn-outline-light {
+  background-color: darkslategrey;
+  color: white;  
+}
+
+button.btn.btn-outline-light:hover {
+  background-color: orange;
 }
 
 a.nav-link {
-  margin-left: 6px;
-  margin-right: 6px;
+  background-color: darkslategrey;
+  border-radius: 25px;
+  min-width: 90px;
+  height: 57px;
+  margin-right: 0.6rem;
+  margin-left: 0.6rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+}
+
+div a p {
+  color: white;
+}
+
+a.nav-link:hover {
+  background-color: orange;
+  padding-left: 26px;
+  padding-right: 26px;
+  margin-right: 1.1rem;
+  margin-left: 1.1rem;
+  font-family: b;
+  transition: .4s;
 }
