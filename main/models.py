@@ -12,17 +12,21 @@ class Brand(models.Model):
 
 class Computer(models.Model):
 
-	title = models.CharField(max_length=100)
+	title = models.CharField(max_length=100, blank=False)
 	brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to="model_img/computers/", blank=True, null=True)
 
 	is_instock = models.BooleanField(default=True)
-	price = models.IntegerField(default=0)
-	stars = models.IntegerField(default=0)
+	instocks = models.IntegerField(default=100, blank=False)
+	is_onsale = models.BooleanField(default=True)
+	og_price = models.IntegerField(default=22000, blank=False)
+	price = models.IntegerField(default=19900, blank=False)
+	stars = models.FloatField(default=5.0, blank=False)
+	is_recommend = models.BooleanField(default=False)
 
 	is_laptop = models.BooleanField(default=False)
 	is_gamingtype = models.BooleanField(default=False)
-	has_monitor = models.BooleanField(default=False)
+	has_monitor = models.BooleanField(default=True)
 	CPU_BRANDS = models.TextChoices("CPU_BRANDS", "RedA BlueI")
 	RAM_CHOICES = models.TextChoices("RAM_CHOICES", "4Gb 8Gb 16Gb 32Gb 64Gb")
 	GPU_BRANDS = models.TextChoices("GPU_BRANDS", "RedA BlueI GreenN")
@@ -46,6 +50,7 @@ class Computer(models.Model):
 	resolution = models.CharField(choices=RESOLUTION_CHOICES.choices, max_length=10)
 	refreshrate = models.CharField(choices=REFRESHRATE_CHOICES.choices, max_length=10)
 	display = models.CharField(choices=DISPLAY_CHOICES.choices, max_length=10)
+	weight = models.FloatField(default=1.70, blank=False)
 
 	def __str__(self):
 		return self.title
