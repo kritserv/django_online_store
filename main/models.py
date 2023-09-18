@@ -5,6 +5,7 @@ from django.db import models
 class Brand(models.Model):
 
 	title = models.CharField(max_length=50)
+	image = models.ImageField(upload_to="model_img/brands/", blank=True, null=True)
 
 	def __str__(self):
 		return self.title
@@ -13,6 +14,7 @@ class Computer(models.Model):
 
 	title = models.CharField(max_length=100)
 	brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to="model_img/computers/", blank=True, null=True)
 
 	is_instock = models.BooleanField(default=True)
 	price = models.IntegerField(default=0)
