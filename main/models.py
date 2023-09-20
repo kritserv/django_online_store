@@ -84,6 +84,10 @@ class Smartphone(models.Model):
 	RESOLUTION_CHOICES = models.TextChoices("RESOLUTION_CHOICES", "1080P 1440P 4K")
 	REFRESHRATE_CHOICES = models.TextChoices("REFRESHRATE_CHOICES", "60Hz 75Hz 90Hz 120Hz 144Hz 240Hz")
 	DISPLAY_CHOICES = models.TextChoices("DISPLAY_CHOICES", "Ips Va Oled")
+	OS_CHOICES = models.TextChoices("OS_CHOICES", "Android10 Android11 Android12 Android13")
+	FRONTCAMERA_CHOICES = models.TextChoices("FRONTCAMERA_CHOICES", "6Mp 8Mp 10Mp 12Mp 32Mp")
+	BACKCAMERA_CHOICES = models.TextChoices("BACKCAMERA_CHOICES", "10Mp 12Mp 32Mp 50Mp")
+	SIM_CHOICES = models.TextChoices("SIM_CHOICES", "1Sim 2Sim")
 
 	processor = models.CharField(max_length=100)
 	processor_brand = models.CharField(default="Snapd", choices=PROCESSOR_BRANDS.choices, max_length=10, blank=False)
@@ -92,8 +96,12 @@ class Smartphone(models.Model):
 	size = models.CharField(default='6.2"', choices=SIZE_CHOICES.choices, max_length=10, blank=True)
 	resolution = models.CharField(default="1440P", choices=RESOLUTION_CHOICES.choices, max_length=10, blank=True)
 	refreshrate = models.CharField(default="90Hz", choices=REFRESHRATE_CHOICES.choices, max_length=10, blank=True)
-	display = models.CharField(default="Ips",choices=DISPLAY_CHOICES.choices, max_length=10, blank=True)
+	display = models.CharField(default="Ips", choices=DISPLAY_CHOICES.choices, max_length=10, blank=True)
 	weight = models.FloatField(default=0.14, blank=False)
+	os = models.CharField(default="Android13", choices=OS_CHOICES.choices, max_length=10, blank=False)
+	front_camera = models.CharField(default="10Mp", choices=FRONTCAMERA_CHOICES.choices, max_length=10, blank=False)
+	back_camera = models.CharField(default="32Mp", choices=BACKCAMERA_CHOICES.choices, max_length=10, blank=False)
+	sim = models.CharField(default="1Sim", choices=SIM_CHOICES.choices, max_length=10, blank=False)
 
 	def __str__(self):
 		return self.title
