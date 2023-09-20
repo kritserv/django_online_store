@@ -154,7 +154,7 @@ class Cloth(models.Model):
 
 	GENDER_CHOICES = models.TextChoices("GENDER_CHOICES", "Male Female Unisex")
 	CLOTH_TYPES = models.TextChoices("CLOTH_TYPES", "T-shirt Sleeveless-shirt Sweatshirt Hoody Dress-shirt ")
-	SIZE_CHOICES = models.TextChoices("SIZE_CHOICES", "S M L XL XXL")
+	SIZE_CHOICES = models.TextChoices("SIZE_CHOICES", "S M L Xl Xxl")
 
 	gender = models.CharField(default="Unisex", choices=GENDER_CHOICES.choices, max_length=10, blank=False)
 	cloth_type = models.CharField(default="T-shirt", choices=CLOTH_TYPES.choices, max_length=50, blank=False)
