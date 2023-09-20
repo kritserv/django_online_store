@@ -97,3 +97,34 @@ class Smartphone(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class Headphone(models.Model):
+
+	title = models.CharField(max_length=100, blank=False)
+	brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to="model_img/headphones/", blank=True, null=True)
+	color = models.CharField(max_length=100, default="Black", blank=False)
+
+	is_instock = models.BooleanField(default=True)
+	instocks = models.IntegerField(default=100, blank=False)
+	is_onsale = models.BooleanField(default=True, blank=False)
+	og_price = models.IntegerField(default=1500, blank=False)
+	price = models.IntegerField(default=900, blank=False)
+	stars = models.FloatField(default=5.0, blank=False)
+	is_recommend = models.BooleanField(default=False)
+
+	is_bluetooth = models.BooleanField(default=True)
+	is_waterproof = models.BooleanField(default=False)
+	has_noisecancelling = models.BooleanField(default=True)
+	has_microphone = models.BooleanField(default=True)
+
+	HEADPHONE_TYPES = models.TextChoices("HEADPHONE_TYPES", "Opened-back-on-ear Closed-back-on-ear Opened-back-over-ear Closed-back-over-ear In-ear")
+	PORT_TYPES = models.TextChoices("PORT_TYPES", "Usb Usb-c Aux3.5")
+	FREQUENCY_CHOICES = models.TextChoices("FREQUENCY_CHOICES", "20Hz-20khz 10Hz-24khz 40Hz-6800hz 4Hz-40khz")
+
+	headphone_type = models.CharField(default="Closed-back-over-ear", choices=HEADPHONE_TYPES.choices, max_length=50, blank=False)
+	port = models.CharField(default="Usb-c", choices=PORT_TYPES.choices, max_length=10, blank=False)
+	frequency_response = models.CharField(default="", choices=FREQUENCY_CHOICES.choices, max_length=50, blank=False)
+
+	def __str__(self):
+		return self.title
