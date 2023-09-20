@@ -132,7 +132,33 @@ class Headphone(models.Model):
 
 	headphone_type = models.CharField(default="Closed-back-over-ear", choices=HEADPHONE_TYPES.choices, max_length=50, blank=False)
 	port = models.CharField(default="Usb-c", choices=PORT_TYPES.choices, max_length=10, blank=False)
-	frequency_response = models.CharField(default="", choices=FREQUENCY_CHOICES.choices, max_length=50, blank=False)
+	frequency_response = models.CharField(default="20Hz-20khz", choices=FREQUENCY_CHOICES.choices, max_length=50, blank=False)
+
+	def __str__(self):
+		return self.title
+
+class Cloth(models.Model):
+
+	title = models.CharField(max_length=100, blank=False)
+	brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to="model_img/cloths/", blank=True, null=True)
+	color = models.CharField(max_length=100, default="White", blank=False)
+
+	is_in_stock = models.BooleanField(default=True)
+	in_stocks = models.IntegerField(default=100, blank=False)
+	is_onsale = models.BooleanField(default=True, blank=False)
+	og_price = models.IntegerField(default=1500, blank=False)
+	price = models.IntegerField(default=900, blank=False)
+	stars = models.FloatField(default=5.0, blank=False)
+	is_recommend = models.BooleanField(default=False)
+
+	GENDER_CHOICES = models.TextChoices("GENDER_CHOICES", "Male Female Unisex")
+	CLOTH_TYPES = models.TextChoices("CLOTH_TYPES", "T-shirt Sleeveless-shirt Sweatshirt Hoody Dress-shirt ")
+	SIZE_CHOICES = models.TextChoices("SIZE_CHOICES", "S M L XL XXL")
+
+	gender = models.CharField(default="Unisex", choices=GENDER_CHOICES.choices, max_length=10, blank=False)
+	cloth_type = models.CharField(default="T-shirt", choices=CLOTH_TYPES.choices, max_length=50, blank=False)
+	size = models.CharField(default="S", choices=SIZE_CHOICES.choices, max_length=5, blank=False)
 
 	def __str__(self):
 		return self.title
