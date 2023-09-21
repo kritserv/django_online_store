@@ -13,7 +13,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Move to Code Directory
+        run: mv * code/
+
       - name: Build and Test
+        working-directory: ./code
         run: |
           docker-compose build
           docker-compose up -d
