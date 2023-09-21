@@ -1,0 +1,24 @@
+name: Django App Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Build and Test
+        run: |
+          docker-compose build
+          docker-compose up -d
+          sleep 10
+
+          docker-compose run app bash -c "python manage.py test"
+
+          docker-compose down
