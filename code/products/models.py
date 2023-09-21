@@ -5,7 +5,7 @@ from django.db import models
 class Brand(models.Model):
 
 	title = models.CharField(max_length=50)
-	image = models.ImageField(upload_to="model_img/brands/", blank=True, null=True)
+	image = models.ImageField(upload_to="media/model_img/brands/", blank=True, null=True)
 
 	def __str__(self):
 		return self.title
@@ -14,7 +14,7 @@ class Computer(models.Model):
 
 	title = models.CharField(max_length=100, blank=False)
 	brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to="model_img/computers/", blank=True, null=True)
+	image = models.ImageField(upload_to="media/model_img/computers/", blank=True, null=True)
 	color = models.CharField(max_length=100, default="Black", blank=False)
 
 	is_in_stock = models.BooleanField(default=True)
@@ -63,7 +63,7 @@ class Smartphone(models.Model):
 
 	title = models.CharField(max_length=100, blank=False)
 	brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to="model_img/smartphones/", blank=True, null=True)
+	image = models.ImageField(upload_to="media/model_img/smartphones/", blank=True, null=True)
 	color = models.CharField(max_length=100, default="White", blank=False)
 
 	is_in_stock = models.BooleanField(default=True)
@@ -110,7 +110,7 @@ class Headphone(models.Model):
 
 	title = models.CharField(max_length=100, blank=False)
 	brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to="model_img/headphones/", blank=True, null=True)
+	image = models.ImageField(upload_to="media/model_img/headphones/", blank=True, null=True)
 	color = models.CharField(max_length=100, default="Black", blank=False)
 
 	is_in_stock = models.BooleanField(default=True)
@@ -141,7 +141,7 @@ class Cloth(models.Model):
 
 	title = models.CharField(max_length=100, blank=False)
 	brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to="model_img/cloths/", blank=True, null=True)
+	image = models.ImageField(upload_to="media/model_img/cloths/", blank=True, null=True)
 	color = models.CharField(max_length=100, default="White", blank=False)
 
 	is_in_stock = models.BooleanField(default=True)
