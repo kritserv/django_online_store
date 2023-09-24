@@ -115,7 +115,7 @@ class Headphone(models.Model):
 
 	is_in_stock = models.BooleanField(default=True)
 	in_stocks = models.IntegerField(default=100, blank=False)
-	is_onsale = models.BooleanField(default=True, blank=False)
+	is_on_sale = models.BooleanField(default=True, blank=False)
 	og_price = models.IntegerField(default=1500, blank=False)
 	price = models.IntegerField(default=900, blank=False)
 	stars = models.FloatField(default=5.0, blank=False)
@@ -146,7 +146,7 @@ class Cloth(models.Model):
 
 	is_in_stock = models.BooleanField(default=True)
 	in_stocks = models.IntegerField(default=100, blank=False)
-	is_onsale = models.BooleanField(default=True, blank=False)
+	is_on_sale = models.BooleanField(default=True, blank=False)
 	og_price = models.IntegerField(default=1500, blank=False)
 	price = models.IntegerField(default=900, blank=False)
 	stars = models.FloatField(default=5.0, blank=False)
