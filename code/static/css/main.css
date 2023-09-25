@@ -38,8 +38,8 @@ input.form-control {
 }
 
 button.btn.btn-outline-light {
-  background-color: darkslategrey;
-  color: white;  
+  background-color: lightblue;
+  color: black;  
 }
 
 button.btn.btn-outline-light:hover {
@@ -47,7 +47,7 @@ button.btn.btn-outline-light:hover {
 }
 
 a.nav-link {
-  background-color: darkslategrey;
+  background-color: lightblue;
   border-radius: 25px;
   min-width: 90px;
   height: 57px;
@@ -62,7 +62,7 @@ a.nav-link {
 }
 
 div a p {
-  color: white;
+  color: black;
 }
 
 a.nav-link:hover {
@@ -71,6 +71,5 @@ a.nav-link:hover {
   padding-right: 26px;
   margin-right: 1.1rem;
   margin-left: 1.1rem;
-  font-family: b;
   transition: .4s;
 }
