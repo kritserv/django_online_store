@@ -15,21 +15,20 @@
 }
 
 #subnav {
-  margin-left: 30vw;
-  margin-right: 30vw;
-  min-width: 300px;
+  margin-left: 65vw;
+  min-width: 35vw;
 }
 
 #subnav ul li p {
   color: wheat;
-  margin-left: 7vw;
-  margin-right: 7vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
 }
 
-#subnav li p a p {
-  color: lightblue;
-  margin-left: 7vw;
-  margin-right: 7vw;
+#subnav li p a {
+  color: black;
+  background-color: lightblue;
+  border-radius: 5px;
 }
 
 li a svg {
