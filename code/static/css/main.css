@@ -14,6 +14,24 @@
   font-family: b;
 }
 
+#subnav {
+  margin-left: 30vw;
+  margin-right: 30vw;
+  min-width: 300px;
+}
+
+#subnav ul li p {
+  color: wheat;
+  margin-left: 7vw;
+  margin-right: 7vw;
+}
+
+#subnav li p a p {
+  color: lightblue;
+  margin-left: 7vw;
+  margin-right: 7vw;
+}
+
 li a svg {
   font-size: 26px;
 }
