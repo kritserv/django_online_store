@@ -2,8 +2,7 @@
 
 {% block content %}
 
-	<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Filter</button>
-
+	<button id="filter-btn" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Filter Product</button>
 
 	<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 	  <div class="offcanvas-header">
@@ -18,4 +17,32 @@
 	  </div>
 	</div>
 
+
+        <div class="row pt-5" style="margin-bottom:6rem; margin-left: 5.2rem; margin-right: 4.2rem;">
+            <div class="col-sm-12">
+                <table style="width:100%">
+                    <thead style="text-align: end;">
+                        <tr>
+                            <th><p>Id</p></th>
+                            <th><p>Title</p></th>
+                            <th><p>Image</p></th>
+                            <th><p>Price</p></th>
+                            <th><p>Star</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for com in computer_data %}
+                        <tr>
+                            <td style="text-align: end;">{{ com.id }}</td>
+                            <td style="text-align: end;">{{ com.title }}</td>
+                            <td style="text-align: end;"><img src="/media/{{ com.im }}" style="width: 15vw;"></td>
+                            <td style="text-align: end;">{{ com.price }}</td>
+                            <td style="text-align: end;">{{ com.star }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
 {% endblock %}

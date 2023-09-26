@@ -11,7 +11,7 @@ class ComputerForm(forms.Form):
 		self.helper.form_method = 'POST'
 		self.helper.add_input(Submit('submit', 'Submit'))
 
-	QUERY_FIELDS = ['is_in_stock', 'is_on_sale','is_laptop', 'is_gamingtype', 'cpu', 'cpu_brand', 'ram', 'gpu', 'gpu_brand', 'storage', 'os']
+	QUERY_FIELDS = ['is_in_stock', 'is_on_sale','is_laptop', 'is_gamingtype', 'color', 'cpu', 'cpu_brand', 'ram', 'gpu', 'gpu_brand', 'storage', 'os']
 
 	FORM = []
 
@@ -23,16 +23,10 @@ class ComputerForm(forms.Form):
 		for x in Computer.objects.values(q).distinct().order_by(q):
 			CHOICES.append((x[q], x[q]))
 
-		FORM.append(forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False))
+		if q == 'is_in_stock' or q == 'is_on_sale' or q == 'is_laptop' or q == 'is_gamingtype':
+			FORM.append(forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False,
+			label=q.replace('_', ' ').title()+" (*choose 1 or none)"))
+		else:
+			FORM.append(forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False))
 
-	product_available = FORM[0]
-	on_sale = FORM[1]
-	laptop = FORM[2]
-	gaming = FORM[3]
-	cpu = FORM[4]
-	cpu_brand = FORM[5]
-	ram = FORM[6]
-	gpu = FORM[7]
-	gpu_brand = FORM[8]
-	storage_size = FORM[9]
-	operating_system = FORM[10]
+	product_available, on_sale, laptop, gaming, color, cpu, cpu_brand, ram, gpu, gpu_brand, storage_size, operating_system = FORM

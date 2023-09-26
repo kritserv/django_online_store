@@ -33,6 +33,11 @@
   border-radius: 5px;
 }
 
+#filter-btn {
+  margin-left: 3rem;
+  margin-top: 4rem;
+}
+
 li a svg {
   font-size: 26px;
 }
