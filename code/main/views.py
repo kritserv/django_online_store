@@ -119,8 +119,13 @@ class ComputerFormView(FormView):
 		if at_least_1_query == False:
 			filtered_computer = Computer.objects.all()
 
-		computer_id = [x[0] for x in filtered_computer.values_list('id')]
 		computer_title = [x[0] for x in filtered_computer.values_list('title')]
+		computer_onsale = [x[0] for x in filtered_computer.values_list('is_on_sale')]
+		computer_og_price = [x[0] for x in filtered_computer.values_list('og_price')]
+		computer_price = [x[0] for x in filtered_computer.values_list('price')]
+		computer_is_in_stock = [x[0] for x in filtered_computer.values_list('is_in_stock')]
+		computer_in_stocks = [x[0] for x in filtered_computer.values_list('in_stocks')]
+		computer_is_recommend  = [x[0] for x in filtered_computer.values_list('is_recommend')]
 		computer_img = filtered_computer.values_list('image')
 		computer_img = [x[0].replace(' ','%20') for x in computer_img]
 		computer_price = [str(x[0]) for x in filtered_computer.values_list('price')]
@@ -128,7 +133,10 @@ class ComputerFormView(FormView):
 
 		product_data = []
 		for i in range(len(computer_title)):
-			product_data.append({'id':computer_id[i], 'title':computer_title[i], 'im':computer_img[i], 'price':computer_price[i], 'star':computer_star[i]})
+			product_data.append({'title':computer_title[i], 'onsale':computer_onsale[i], 
+				'ogprice':computer_og_price[i], 'price':computer_price[i],'im':computer_img[i], 
+				'instock':computer_is_in_stock[i], 'available': computer_in_stocks[i],
+				'recommend':computer_is_recommend[i], 'star':computer_star[i]})
 
 		self.request.session['product_data'] = product_data
 
