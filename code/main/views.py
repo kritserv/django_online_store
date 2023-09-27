@@ -139,10 +139,28 @@ class ComputerFormView(FormView):
 				computer_og_price[i] = ''
 			fullstar = "★" * floor(float(computer_star[i]))
 
+			if computer_onsale[i] == True:
+				computer_onsale[i] = 'Sale'
+			else:
+				computer_onsale[i] = ''
+
+			if computer_is_in_stock[i] == False:
+				computer_is_in_stock[i] = 'Out of Stock'
+			else:
+				computer_is_in_stock[i] = 'Available'
+
+			if computer_is_recommend[i] == True:
+				computer_is_recommend[i] = 'Recommend'
+			else:
+				computer_is_recommend[i] = ''
+
+			if len(computer_title[i] + 'Recommend') > 37:
+				computer_title[i] = computer_title[i][0:30] + '...'
+
 			product_data.append({'title':computer_title[i], 'onsale':computer_onsale[i], 
 				'ogprice':computer_og_price[i], 'price':computer_price[i],'im':computer_img[i], 
 				'instock':computer_is_in_stock[i], 'available': computer_in_stocks[i],
-				'recommend':computer_is_recommend[i], 'star':fullstar+' ('+computer_star[i]+')'})
+				'recommend':computer_is_recommend[i], 'star':fullstar, 'star_num':' ('+computer_star[i]+')'})
 
 		self.request.session['product_data'] = product_data
 
