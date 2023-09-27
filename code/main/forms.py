@@ -15,10 +15,8 @@ class ComputerForm(forms.Form):
 
 	FORM = []
 
-	i = 0
 	for q in QUERY_FIELDS:
 
-		i+=1
 		CHOICES = []
 		for x in Computer.objects.values(q).distinct().order_by(q):
 			CHOICES.append((x[q], x[q]))

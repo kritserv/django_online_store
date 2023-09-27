@@ -10,14 +10,14 @@ def home(request):
 class ComputerFormView(FormView):
 
 	form_class = ComputerForm
-	template_name = 'products/computer.html'
+	template_name = 'store/product.html'
 	success_url = '/computer'
 
 	def form_valid(self, form):
 
 		filtered_computer =  Computer.objects.all()
 
-		self.request.session['computer_data'] = []
+		self.request.session['product_data'] = []
 		all_is_in_stock_query, all_is_on_sale_query, all_is_laptop_query, all_gaming_query, all_color_query, all_cpu_query, all_cpu_brand_query, all_ram_query, all_gpu_query, all_qpu_brand_query, all_storage_query, all_os_query = [], [], [], [], [], [], [], [], [], [], [], []
 		at_least_1_query = False
 
@@ -126,16 +126,16 @@ class ComputerFormView(FormView):
 		computer_price = [str(x[0]) for x in filtered_computer.values_list('price')]
 		computer_star = [str(x[0]) for x in filtered_computer.values_list('stars')]
 
-		computer_data = []
+		product_data = []
 		for i in range(len(computer_title)):
-			computer_data.append({'id':computer_id[i], 'title':computer_title[i], 'im':computer_img[i], 'price':computer_price[i], 'star':computer_star[i]})
+			product_data.append({'id':computer_id[i], 'title':computer_title[i], 'im':computer_img[i], 'price':computer_price[i], 'star':computer_star[i]})
 
-		self.request.session['computer_data'] = computer_data
+		self.request.session['product_data'] = product_data
 
 		return super().form_valid(form)
 
 	def get_context_data(self, **kwargs):
 
 		context = super().get_context_data(**kwargs)
-		context['computer_data'] = self.request.session.get('computer_data', [])
+		context['product_data'] = self.request.session.get('product_data', [])
 		return context

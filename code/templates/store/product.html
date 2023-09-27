@@ -37,13 +37,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for com in computer_data %}
+                        {% for prod in product_data %}
                         <tr>
-                            <td style="text-align: end;">{{ com.id }}</td>
-                            <td style="text-align: end;">{{ com.title }}</td>
-                            <td style="text-align: end;"><img src="/media/{{ com.im }}" style="width: 15vw;"></td>
-                            <td style="text-align: end;">{{ com.price }}</td>
-                            <td style="text-align: end;">{{ com.star }}</td>
+                            <td style="text-align: end;">{{ prod.id }}</td>
+                            <td style="text-align: end;">{{ prod.title }}</td>
+                            <td style="text-align: end;"><img src="/media/{{ prod.im }}" style="width: 15vw;"></td>
+                            <td style="text-align: end;">{{ prod.price }}</td>
+                            <td style="text-align: end;">{{ prod.star }}</td>
                         </tr>
                         {% empty %}
                             <td style="text-align: end;">...</td>
