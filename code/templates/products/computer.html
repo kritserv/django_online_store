@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %} 
 
     <form action="" method="POST">
 
@@ -23,7 +24,6 @@
 
     </form>
 
-
         <div class="row pt-5" style="margin-bottom:6rem; margin-left: 5.2rem; margin-right: 4.2rem;">
             <div class="col-sm-12">
                 <table style="width:100%">
@@ -45,6 +45,12 @@
                             <td style="text-align: end;">{{ com.price }}</td>
                             <td style="text-align: end;">{{ com.star }}</td>
                         </tr>
+                        {% empty %}
+                            <td style="text-align: end;">...</td>
+                            <td style="text-align: end;">Sorry, there's no requested product..</td>
+                            <td style="text-align: end;"><img src="{% static 'img/noimage.png' %}" style="width: 15vw;"></td>
+                            <td style="text-align: end;">...</td>
+                            <td style="text-align: end;">...</td>
                         {% endfor %}
                     </tbody>
                 </table>
