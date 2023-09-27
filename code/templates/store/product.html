@@ -55,7 +55,7 @@
 
                 <div class="d-flex justify-content-between mb-3">
                   <h5 class="mb-0">{{ prod.title }} {% if prod.recommend %}<br><span id="recommend-tag">{{ prod.recommend }}</span>{% else %}<br><br>{% endif %}</h5>
-                  <h5 class="text-dark mb-0">{{ prod.price }}</h5>
+                  <h5 class="text-dark mb-0">{{ prod.price }}฿</h5>
                 </div>
 
                 <div class="d-flex justify-content-between mb-2">
@@ -72,7 +72,7 @@
       {% empty %}
       <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
         <h1>Sorry, there's no requested product..</h1>
-        <img src="{% static 'img/noimage.png' %}" style="width: 30vw;">
+        <img src="{% static 'img/noimage.png' %}" style="width: 30vw; margin-bottom: 7rem;">
       </div>
       {% endfor %}
       {% if product_data %}

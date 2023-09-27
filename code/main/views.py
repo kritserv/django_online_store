@@ -27,7 +27,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(is_in_stock=query).values_list('id'):
 					all_is_in_stock_query.append(x[0])
-		if all_is_in_stock_query:	
+		if form.cleaned_data['product_available']:
 			filtered_computer = filtered_computer.filter(id__in=all_is_in_stock_query)
 		query = None
 
@@ -36,7 +36,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(is_on_sale=query).values_list('id'):
 					all_is_on_sale_query.append(x[0])
-		if all_is_on_sale_query:	
+		if form.cleaned_data['on_sale']:	
 			filtered_computer = filtered_computer.filter(id__in=all_is_on_sale_query)
 		query = None
 
@@ -45,7 +45,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(is_laptop=query).values_list('id'):
 					all_is_laptop_query.append(x[0])
-		if all_is_laptop_query:	
+		if form.cleaned_data['laptop']:	
 			filtered_computer = filtered_computer.filter(id__in=all_is_laptop_query)
 		query = None
 
@@ -54,7 +54,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(is_gamingtype=query).values_list('id'):
 					all_gaming_query.append(x[0])
-		if all_gaming_query:	
+		if form.cleaned_data['gaming']:	
 			filtered_computer = filtered_computer.filter(id__in=all_gaming_query)
 		query = None
 
@@ -63,7 +63,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(color=query).values_list('id'):
 					all_color_query.append(x[0])
-		if all_color_query:
+		if form.cleaned_data['color']:
 			filtered_computer = filtered_computer.filter(id__in=all_color_query)
 		query = None
 
@@ -72,7 +72,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(cpu=query).values_list('id'):
 					all_cpu_query.append(x[0])
-		if all_cpu_query:
+		if form.cleaned_data['cpu']:
 			filtered_computer = filtered_computer.filter(id__in=all_cpu_query)
 		query = None
 
@@ -81,7 +81,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(cpu_brand=query).values_list('id'):
 					all_cpu_brand_query.append(x[0])
-		if all_cpu_brand_query:
+		if form.cleaned_data['cpu_brand']:
 			filtered_computer = filtered_computer.filter(id__in=all_cpu_brand_query)
 		query = None
 
@@ -90,7 +90,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(ram=query).values_list('id'):
 					all_ram_query.append(x[0])
-		if all_ram_query:
+		if form.cleaned_data['ram']:
 			filtered_computer = filtered_computer.filter(id__in=all_ram_query)
 		query = None
 
@@ -99,7 +99,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(gpu=query).values_list('id'):
 					all_gpu_query.append(x[0])
-		if all_gpu_query:
+		if form.cleaned_data['gpu']:
 			filtered_computer = filtered_computer.filter(id__in=all_gpu_query)
 		query = None
 
@@ -108,7 +108,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(gpu_brand=query).values_list('id'):
 					all_qpu_brand_query.append(x[0])
-		if all_qpu_brand_query:
+		if form.cleaned_data['gpu_brand']:
 			filtered_computer = filtered_computer.filter(id__in=all_qpu_brand_query)
 		query = None
 
@@ -117,7 +117,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(storage=query).values_list('id'):
 					all_storage_query.append(x[0])
-		if all_storage_query:
+		if form.cleaned_data['storage_size']:
 			filtered_computer = filtered_computer.filter(id__in=all_storage_query)
 		query = None
 
@@ -126,7 +126,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(os=query).values_list('id'):
 					all_os_query.append(x[0])
-		if all_os_query:
+		if form.cleaned_data['operating_system']:
 			filtered_computer = filtered_computer.filter(id__in=all_os_query)
 
 		if at_least_1_query == False:
@@ -159,7 +159,7 @@ class ComputerFormView(FormView):
 			if computer_is_in_stock[i] == False:
 				computer_is_in_stock[i] = 'Out of Stock'
 			else:
-				computer_is_in_stock[i] = 'Available'
+				computer_is_in_stock[i] = 'In Stocks'
 
 			if computer_is_recommend[i] == True:
 				computer_is_recommend[i] = 'Recommend'
