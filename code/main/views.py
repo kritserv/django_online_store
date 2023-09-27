@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 from products.models import *
 from .forms import ComputerForm
+from math import floor
 
 # Create your views here.
 def home(request):
@@ -133,10 +134,18 @@ class ComputerFormView(FormView):
 
 		product_data = []
 		for i in range(len(computer_title)):
+
+			if computer_onsale[i] == False:
+				computer_og_price[i] = ''
+			fullstar = "★" * floor(float(computer_star[i]))
+			halfstar = ""
+			if  0.9 >= (floor(float(computer_star[i])) - (float(computer_star[i]))) >= 0.1:
+				halfstar = "⯨"
+
 			product_data.append({'title':computer_title[i], 'onsale':computer_onsale[i], 
 				'ogprice':computer_og_price[i], 'price':computer_price[i],'im':computer_img[i], 
 				'instock':computer_is_in_stock[i], 'available': computer_in_stocks[i],
-				'recommend':computer_is_recommend[i], 'star':computer_star[i]})
+				'recommend':computer_is_recommend[i], 'star':fullstar+halfstar+' ('+computer_star[i]+')'})
 
 		self.request.session['product_data'] = product_data
 

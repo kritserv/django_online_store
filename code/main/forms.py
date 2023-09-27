@@ -21,10 +21,6 @@ class ComputerForm(forms.Form):
 		for x in Computer.objects.values(q).distinct().order_by(q):
 			CHOICES.append((x[q], x[q]))
 
-		if q == 'is_in_stock' or q == 'is_on_sale' or q == 'is_laptop' or q == 'is_gamingtype':
-			FORM.append(forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False,
-			label=q.replace('_', ' ').title()+" (*choose 1 or none)"))
-		else:
-			FORM.append(forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False))
+		FORM.append(forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False))
 
 	product_available, on_sale, laptop, gaming, color, cpu, cpu_brand, ram, gpu, gpu_brand, storage_size, operating_system = FORM
