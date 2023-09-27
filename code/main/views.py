@@ -26,6 +26,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(is_in_stock=query).values_list('id'):
 					all_is_in_stock_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_is_in_stock_query)
 		query = None
 
 		for query in form.cleaned_data['on_sale']:
@@ -33,6 +34,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(is_on_sale=query).values_list('id'):
 					all_is_on_sale_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_is_on_sale_query)
 		query = None
 
 		for query in form.cleaned_data['laptop']:
@@ -40,6 +42,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(is_laptop=query).values_list('id'):
 					all_is_laptop_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_is_laptop_query)
 		query = None
 
 		for query in form.cleaned_data['gaming']:
@@ -47,6 +50,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(is_gamingtype=query).values_list('id'):
 					all_gaming_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_gaming_query)
 		query = None
 
 		for query in form.cleaned_data['color']:
@@ -54,6 +58,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(color=query).values_list('id'):
 					all_color_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_color_query)
 		query = None
 
 		for query in form.cleaned_data['cpu']:
@@ -61,6 +66,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(cpu=query).values_list('id'):
 					all_cpu_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_cpu_query)
 		query = None
 
 		for query in form.cleaned_data['cpu_brand']:
@@ -68,6 +74,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(cpu_brand=query).values_list('id'):
 					all_cpu_brand_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_cpu_brand_query)
 		query = None
 
 		for query in form.cleaned_data['ram']:
@@ -75,6 +82,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(ram=query).values_list('id'):
 					all_ram_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_ram_query)
 		query = None
 
 		for query in form.cleaned_data['gpu']:
@@ -82,6 +90,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(gpu=query).values_list('id'):
 					all_gpu_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_gpu_query)
 		query = None
 
 		for query in form.cleaned_data['gpu_brand']:
@@ -89,6 +98,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(gpu_brand=query).values_list('id'):
 					all_qpu_brand_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_qpu_brand_query)
 		query = None
 
 		for query in form.cleaned_data['storage_size']:
@@ -96,6 +106,7 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(storage=query).values_list('id'):
 					all_storage_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_storage_query)
 		query = None
 
 		for query in form.cleaned_data['operating_system']:
@@ -103,12 +114,11 @@ class ComputerFormView(FormView):
 				at_least_1_query = True
 				for x in filtered_computer.filter(os=query).values_list('id'):
 					all_os_query.append(x[0])
+				filtered_computer = filtered_computer.filter(id__in=all_os_query)
 
-		if at_least_1_query:
-			filtered_computer = filtered_computer.filter(id__in=set(all_is_in_stock_query + all_is_on_sale_query + all_is_laptop_query + all_gaming_query + all_color_query + all_cpu_query + all_cpu_brand_query + all_ram_query + all_gpu_query + all_qpu_brand_query + all_storage_query + all_os_query))
-		else:
+		if at_least_1_query == False:
 			filtered_computer = Computer.objects.all()
-		
+
 		computer_id = [x[0] for x in filtered_computer.values_list('id')]
 		computer_title = [x[0] for x in filtered_computer.values_list('title')]
 		computer_img = filtered_computer.values_list('image')
