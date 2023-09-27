@@ -2,7 +2,11 @@
 
 {% block content %}
 
-	<button id="filter-btn" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Filter Product</button>
+    <form action="" method="POST">
+
+	<button id="filter-btn" class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Filter Product</button>
+
+    <button id="filter-btn" type="submit" class="btn btn-danger" type="button" name="reset">Reset</button>
 
 	<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 	  <div class="offcanvas-header">
@@ -16,6 +20,8 @@
 
 	  </div>
 	</div>
+
+    </form>
 
 
         <div class="row pt-5" style="margin-bottom:6rem; margin-left: 5.2rem; margin-right: 4.2rem;">
@@ -44,4 +50,5 @@
                 </table>
             </div>
         </div>
+
 {% endblock %}
