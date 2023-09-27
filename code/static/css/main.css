@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .d-flex {
   display: flex;
 }
@@ -36,6 +40,33 @@
 #filter-btn {
   margin-left: 3rem;
   margin-top: 4rem;
+}
+
+#prod-container {
+  margin-top: 4rem;
+}
+
+#prod-card {
+  width:95%;
+}
+
+#prod-card:hover {
+  scale: 1.07;
+  transition: .2s;
+}
+
+h5.mb-0 {
+  font-weight: bold;
+}
+
+#sale-tag {
+  width: 55px;
+  height: 35px;
+  font-weight: bold;
+}
+
+#recommend-tag {
+  color: royalblue;
 }
 
 li a svg {

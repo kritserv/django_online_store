@@ -31,19 +31,19 @@
     </form>
 
 <section style="background-color: #eee;">
-  <div class="container py-6" style="margin-top: 4rem;">
+  <div class="container py-6" id="prod-container">
     <div class="row">
       {% for prod in product_data %}
         <div class="col-md-6 col-lg-3 mb-4 mb-lg-6">
           <div data-aos="flip-down">
-            <div class="card" style="width:95%">
+            <div class="card" id="prod-card">
               <div class="d-flex">
                 {% if prod.onsale %}
-                <div class="bg-danger rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style="width: 55px; height: 35px;">
+                <div class="bg-danger rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" id="sale-tag">
                   <p class="text-white mb-0 small">{{ prod.onsale }}</p>
                 </div>
                 {% else %}
-                <p style="height: 35px"></p>
+                <p id="sale-tag"></p>
                 {% endif %}
               </div>
               <img src="/media/{{ prod.im }}" class="card-img-top" alt="{{ prod.title }}">
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between mb-3">
-                  <h5 class="mb-0">{{ prod.title }} {% if prod.recommend %}<br><span style="color: red;">{{ prod.recommend }}</span>{% else %}<br><br>{% endif %}</h5>
+                  <h5 class="mb-0">{{ prod.title }} {% if prod.recommend %}<br><span id="recommend-tag">{{ prod.recommend }}</span>{% else %}<br><br>{% endif %}</h5>
                   <h5 class="text-dark mb-0">{{ prod.price }}</h5>
                 </div>
 
