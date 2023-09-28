@@ -10,7 +10,8 @@ def home(request):
 
 def product_computer(request, id):
 	product = Computer.objects.get(id=id)
-	return render(request, "store/product/computer.html", {'data': product})
+	fullstar = "★" * floor(product.stars)
+	return render(request, "store/product/computer.html", {'data': product, 'fullstar': fullstar})
 
 class ComputerFormView(FormView):
 

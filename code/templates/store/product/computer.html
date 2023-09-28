@@ -9,7 +9,111 @@
       AOS.init();
     </script>
 
-    <a href="/computer">Back to computer</a>
-    <h1>Product</h1>
+    <div class="d-flex justify-content-between mb-2" style="margin-left: 3vw; margin-top: 6rem; margin-right: 3vw;">
+      <div>
+        <a href="/computer" id="filter-btn"><- Back to computer</a>
+          <div class="col-md-6">
+            <img src="/media/{{ data.image }}" style="width: 42vw; min-width: 220px;">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+                <img src="/media/{{ data.image }}" style="width: 6rem; margin-left: 6rem;">
+              </div>
+              <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+                <img src="/media/{{ data.image }}" style="width: 6rem; margin-left: 6rem;">
+              </div>
+              <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+                <img src="/media/{{ data.image }}" style="width: 6rem; margin-left: 6rem;">
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div style="margin-left: 2vw">
+        <h3>{{ data.title }}</h3>
+        <div>
+          <div class="ms-auto text-warning">
+            <h1>{{ fullstar }}<span style="color:black; font-size: 1.4rem">({{ data.stars }})</span></h1>
+          </div>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <h5><p class="small text-danger"><s>{{ data.og_price }}</s></p></h5>
+        <h2>{{ data.price }}฿</h2>
+        <button class="btn btn-primary add-to-cart">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg> Add to cart
+        </button>
+
+        <br><br><br>
+        <h3>Computer information</h3>
+        <br>
+        <table style="margin-bottom: 19rem;">
+          <tbody>
+            <tr>
+              <td>Title</td>
+              <td>{{ data.title }}</td>
+            </tr>
+            <tr>
+              <td>Processor</td>
+              <td>{{ data.cpu }}</td>
+            </tr>
+            <tr>
+              <td>Memory size</td>
+              <td>{{ data.ram }}</td>
+            </tr>
+            <tr>
+              <td>Graphics card</td>
+              <td>{{ data.gpu }}</td>
+            </tr>
+            <tr>
+              <td>Storage</td>
+              <td>{{ data.storage }} {{ data.storage_type }}</td>
+            </tr>
+            {% if data.size %}
+            <tr>
+              <td>Size</td>
+              <td>{{ data.size }}</td>
+            </tr>
+            {% endif %}
+            {% if data.case %}
+            <tr>
+              <td>Case</td>
+              <td>{{ data.case }}</td>
+            </tr>
+            {% endif %}
+            {% if data.resolution %}
+            <tr>
+              <td>Resolution</td>
+              <td>{{ data.resolution }}</td>
+            </tr>
+            {% endif %}
+            {% if data.refresh_rate %}
+            <tr>
+              <td>Refresh rate</td>
+              <td>{{ data.refresh_rate }}</td>
+            </tr>
+            {% endif %}
+            {% if data.display %}
+            <tr>
+              <td>Display</td>
+              <td>{{ data.display }}</td>
+            </tr>
+            {% endif %}
+            {% if data.weight %}
+            <tr>
+              <td>Weight</td>
+              <td>{{ data.weight }}</td>
+            </tr>
+            {% endif %}
+            {% if data.os %}
+            <tr>
+              <td>Operating system</td>
+              <td>{{ data.os }}</td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
 
 {% endblock %}
