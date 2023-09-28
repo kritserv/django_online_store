@@ -5,3 +5,4 @@ Pillow==9.5.0
 django-extensions
 django-crispy-forms
 crispy-bootstrap4
+django-allauth==0.57.0

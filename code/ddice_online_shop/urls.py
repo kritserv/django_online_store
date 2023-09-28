@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from main import views
 from main.formview.computer_formview import ComputerFormView
 from django.conf import settings
@@ -24,9 +24,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.home, name = "home"),
-    
+
     path("computer/product/<int:id>", views.product_computer, name = "view_product_computer"),
 
     path('computer/', ComputerFormView.as_view(), name='view_computer'),
+
+    path('accounts/', include('allauth.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
