@@ -36,6 +36,7 @@
       {% for prod in product_data %}
         <div class="col-md-6 col-lg-3 mb-4 mb-lg-6">
           <div data-aos="flip-down">
+            <a href="{{ prod.link }}">
             <div class="card" id="prod-card">
               <div class="d-flex">
                 {% if prod.onsale %}
@@ -67,6 +68,7 @@
                 </div>
               </div>
             </div>
+            </a>
           </div>
         </div>
       {% empty %}

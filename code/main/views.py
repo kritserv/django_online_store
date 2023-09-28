@@ -8,6 +8,10 @@ from math import floor
 def home(request):
 	return render(request, "homepage.html")
 
+def product_computer(request, id):
+	product = Computer.objects.get(id=id)
+	return render(request, "store/product/computer.html", {'data': product})
+
 class ComputerFormView(FormView):
 
 	form_class = ComputerForm
@@ -133,6 +137,7 @@ class ComputerFormView(FormView):
 			filtered_computer = Computer.objects.all()
 
 		computer_title = [x[0] for x in filtered_computer.values_list('title')]
+		computer_link = ['/computer/product/'+str(x[0]) for x in filtered_computer.values_list('id')]
 		computer_onsale = [x[0] for x in filtered_computer.values_list('is_on_sale')]
 		computer_og_price = [x[0] for x in filtered_computer.values_list('og_price')]
 		computer_price = [x[0] for x in filtered_computer.values_list('price')]
@@ -169,9 +174,10 @@ class ComputerFormView(FormView):
 			if len(computer_title[i] + 'Recommend') > 37:
 				computer_title[i] = computer_title[i][0:30] + '...'
 
+
 			product_data.append({'title':computer_title[i], 'onsale':computer_onsale[i], 
 				'ogprice':computer_og_price[i], 'price':computer_price[i],'im':computer_img[i], 
-				'instock':computer_is_in_stock[i], 'available': computer_in_stocks[i],
+				'instock':computer_is_in_stock[i], 'available': computer_in_stocks[i], 'link': computer_link[i],
 				'recommend':computer_is_recommend[i], 'star':fullstar, 'star_num':' ('+computer_star[i]+')'})
 
 		self.request.session['product_data'] = product_data

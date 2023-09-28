@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %} 
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <script src="{% static 'js/aos.js' %}"></script>
+
+    <script>
+      AOS.init();
+    </script>
+
+    <a href="/computer">Back to computer</a>
+    <h1>Product</h1>
+
+{% endblock %}

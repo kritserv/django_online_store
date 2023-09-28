@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+a:link{
+  text-decoration: none!important;
+}
+
 .d-flex {
   display: flex;
 }
