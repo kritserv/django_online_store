@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'main',
     'products',
+    'order_manager',
 
     'crispy_forms',
     'django_extensions',
