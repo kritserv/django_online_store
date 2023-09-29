@@ -29,6 +29,8 @@ urlpatterns = [
 
     path('computer/', ComputerFormView.as_view(), name='view_computer'),
 
+    path("computer/product/addtocart/<str:title>", views.add_to_cart, name = "add_to_cart"),
+
     path('accounts/', include('allauth.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
