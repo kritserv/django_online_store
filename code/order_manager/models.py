@@ -8,6 +8,7 @@ class ProductItem(models.Model):
 	image = models.ImageField()
 	og_price = models.IntegerField()
 	price = models.IntegerField()
+	is_on_sale = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.title

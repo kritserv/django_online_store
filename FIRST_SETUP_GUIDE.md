@@ -14,6 +14,7 @@ Import product models
 
 ```
 from products.models import *
+from order_manager.models import *
 ```
 
 Adding data
@@ -146,4 +147,28 @@ Smartphone(id=6, title="Orange OR20 (8Gb + 128Gb)", brand=Brand.objects.get(titl
 Smartphone(id=7, title="Ros S16 (4Gb + 128Gb) Red", brand=Brand.objects.get(title="Ros"), image="media/model_img/smartphones/rose s16 red.png", color="Red", is_in_stock=False, in_stocks=0, is_on_sale=False, og_price=10900, price=10900, stars=4.2, is_recommend=True, is_tablet=False, is_flagship=True, processor="Snapd 720", processor_brand="Snapd", ram="4Gb", storage="128Gb", size='6.6"', resolution="1440P", refresh_rate="75Hz", display="Ips", weight=0.22, os="Android12", front_camera="12Mp", back_camera="32Mp", sim="2Sim").save()
 Smartphone(id=8, title="Ros S16 (4Gb + 128Gb) White", brand=Brand.objects.get(title="Ros"), image="media/model_img/smartphones/rose s16 white.png", color="White", is_in_stock=True, in_stocks=64, is_on_sale=False, og_price=10900, price=10900, stars=4.2, is_recommend=True, is_tablet=False, is_flagship=True, processor="Snapd 720", processor_brand="Snapd", ram="4Gb", storage="128Gb", size='6.6"', resolution="1440P", refresh_rate="75Hz", display="Ips", weight=0.22, os="Android12", front_camera="12Mp", back_camera="32Mp", sim="2Sim").save()
 
+ID = 0
+for i in range(len(Cloth.objects.all())):
+	ID += 1
+	current = Cloth.objects.get(id=i+1)
+
+	ProductItem(id=ID, title=current.title, image=current.image, og_price=current.og_price, price=current.price, is_on_sale=current.is_on_sale).save()
+
+for i in range(len(Computer.objects.all())):
+	ID += 1
+	current = Computer.objects.get(id=i+1)
+
+	ProductItem(id=ID, title=current.title, image=current.image, og_price=current.og_price, price=current.price, is_on_sale=current.is_on_sale).save()
+
+for i in range(len(Headphone.objects.all())):
+	ID += 1
+	current = Headphone.objects.get(id=i+1)
+
+	ProductItem(id=ID, title=current.title, image=current.image, og_price=current.og_price, price=current.price, is_on_sale=current.is_on_sale).save()
+
+for i in range(len(Smartphone.objects.all())):
+	ID += 1
+	current = Smartphone.objects.get(id=i+1)
+
+	ProductItem(id=ID, title=current.title, image=current.image, og_price=current.og_price, price=current.price, is_on_sale=current.is_on_sale).save()
 ```
