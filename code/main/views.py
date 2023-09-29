@@ -77,6 +77,8 @@ def remove_single_item_from_cart(request, title):
             if order_item.quantity > 1:
                 order_item.quantity -= 1
                 order_item.save()
+                messages.info(request, "This item quantity was updated.")
+                return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
             else:
                 order.items.remove(order_item)
                 messages.info(request, "This item quantity was updated.")
