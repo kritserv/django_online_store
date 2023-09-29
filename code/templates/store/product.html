@@ -13,7 +13,7 @@
 
 	<button id="filter-btn" class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Filter Product</button>
 
-    <button id="filter-btn" type="submit" class="btn btn-danger" type="button" name="reset">Reset</button>
+    <button id="filter-btn" type="submit" class="btn btn-success" type="button" name="refresh">Refresh</button>
 
 	<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 	  <div class="offcanvas-header">
@@ -73,8 +73,9 @@
         </div>
       {% empty %}
       <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
-        <h1>Sorry, there's no requested product..</h1>
-        <img src="{% static 'img/noimage.png' %}" style="width: 30vw; margin-bottom: 7rem;">
+        <h1>Sorry, there's no filtered product..</h1>
+        <h3>Select new filter or click Refresh button.</h3>
+        <img src="{% static 'img/noimage.png' %}" style="width: 20vw; margin-bottom: 7rem;">
       </div>
       {% endfor %}
       {% if product_data %}
