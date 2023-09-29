@@ -30,6 +30,8 @@ urlpatterns = [
     path('computer/', ComputerFormView.as_view(), name='view_computer'),
 
     path("computer/product/addtocart/<str:title>", views.add_to_cart, name = "add_to_cart"),
+    path("computer/product/removefromcart/<str:title>", views.remove_from_cart, name = "remove_from_cart"),
+    path("computer/product/removeonefromcart/<str:title>", views.remove_single_item_from_cart, name = "remove_one_from_cart"),
 
     path('accounts/', include('allauth.urls')),
     

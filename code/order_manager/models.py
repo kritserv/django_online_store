@@ -19,7 +19,7 @@ class OrderProductItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     prod_item = models.ForeignKey(ProductItem, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=1, null=True)
 
     def __str__(self):
         return f"{self.quantity} of {self.prod_item.title}"
