@@ -30,10 +30,14 @@ a:link{
   min-width: 35vw;
 }
 
+#subnav ul{
+  width: 100%;
+}
+
 #subnav ul li p {
   color: wheat;
-  margin-left: 2vw;
-  margin-right: 2vw;
+  margin-left: 6vw;
+  margin-right: 6vw;
 }
 
 #subnav li p a {
