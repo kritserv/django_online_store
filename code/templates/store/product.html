@@ -72,10 +72,11 @@
           </div>
         </div>
       {% empty %}
-      <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
-        <h1>Sorry, there's no filtered product..</h1>
-        <h3>Select new filter or click Refresh button.</h3>
-        <img src="{% static 'img/noimage.png' %}" style="width: 20vw; margin-bottom: 7rem;">
+      <div class="container-fluid">
+        <div style="margin-left: 3rem; margin-right: 25vw; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+          <h2>Sorry, there's no filtered product..</h2>
+          <h4>Select new filter or click Refresh button.</h4>
+        </div>
       </div>
       {% endfor %}
       {% if product_data %}
