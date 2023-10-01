@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from main import views
 from main.formview.computer_formview import ComputerFormView
+from main.formview.smartphone_formview import SmartphoneFormView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,8 +27,10 @@ urlpatterns = [
     path("", views.home, name = "home"),
 
     path("computer/product/<int:id>", views.product_computer, name = "view_product_computer"),
+    path("smartphone/product/<int:id>", views.product_smartphone, name = "view_product_smartphone"),
 
-    path('computer/', ComputerFormView.as_view(), name='view_computer'),
+    path('computer/', ComputerFormView.as_view(), name='view_computer'),    
+    path('smartphone/', SmartphoneFormView.as_view(), name='view_smartphone'),
 
     path("computer/product/addtocart/<str:title>", views.add_to_cart, name = "add_to_cart"),
     path("computer/product/removefromcart/<str:title>", views.remove_from_cart, name = "remove_from_cart"),

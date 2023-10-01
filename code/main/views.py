@@ -9,7 +9,7 @@ from math import floor
 # Create your views here.
 def home(request):
 
-    if 'product_data' not in request.session:
+    if 'computer_data' not in request.session:
         filtered_computer = Computer.objects.all()
 
         computer_title = [x[0] for x in filtered_computer.values_list('title')]
@@ -25,7 +25,7 @@ def home(request):
         computer_price = [str(x[0]) for x in filtered_computer.values_list('price')]
         computer_star = [str(x[0]) for x in filtered_computer.values_list('stars')]
 
-        product_data = []
+        computer_data = []
         for i in range(len(computer_title)):
 
             if computer_onsale[i] == False:
@@ -51,12 +51,12 @@ def home(request):
                 computer_title[i] = computer_title[i][0:30] + '...'
 
 
-            product_data.append({'title':computer_title[i], 'onsale':computer_onsale[i], 
+            computer_data.append({'title':computer_title[i], 'onsale':computer_onsale[i], 
                 'ogprice':computer_og_price[i], 'price':computer_price[i],'im':computer_img[i], 
                 'instock':computer_is_in_stock[i], 'available': computer_in_stocks[i], 'link': computer_link[i],
                 'recommend':computer_is_recommend[i], 'star':fullstar, 'star_num':' ('+computer_star[i]+')'})
 
-        request.session['product_data'] = product_data
+        request.session['computer_data'] = computer_data
 
     return render(request, "homepage.html")
 
@@ -64,6 +64,11 @@ def product_computer(request, id):
     product = Computer.objects.get(id=id)
     fullstar = "★" * floor(product.stars)
     return render(request, "store/product/computer.html", {'data': product, 'fullstar': fullstar})
+
+def product_smartphone(request, id):
+    product = Smartphone.objects.get(id=id)
+    fullstar = "★" * floor(product.stars)
+    return render(request, "store/product/smartphone.html", {'data': product, 'fullstar': fullstar})
 
 @login_required
 def add_to_cart(request, title):

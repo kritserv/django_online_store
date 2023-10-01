@@ -14,8 +14,8 @@ class ComputerFormView(FormView):
 
         filtered_computer =  Computer.objects.all()
 
-        self.request.session['product_data'] = []
-        all_is_in_stock_query, all_is_on_sale_query, all_is_laptop_query, all_gaming_query, all_color_query, all_cpu_query, all_cpu_brand_query, all_ram_query, all_gpu_query, all_qpu_brand_query, all_storage_query, all_os_query = [], [], [], [], [], [], [], [], [], [], [], []
+        self.request.session['computer_data'] = []
+        all_is_in_stock_query, all_is_on_sale_query, all_is_laptop_query, all_gaming_query, all_color_query, all_cpu_query, all_cpu_brand_query, all_ram_query, all_gpu_query, all_gpu_brand_query, all_storage_query, all_os_query = [], [], [], [], [], [], [], [], [], [], [], []
         at_least_1_query = False
 
         for query in form.cleaned_data['product_available']:
@@ -103,9 +103,9 @@ class ComputerFormView(FormView):
             if query:
                 at_least_1_query = True
                 for x in filtered_computer.filter(gpu_brand=query).values_list('id'):
-                    all_qpu_brand_query.append(x[0])
+                    all_gpu_brand_query.append(x[0])
         if form.cleaned_data['gpu_brand']:
-            filtered_computer = filtered_computer.filter(id__in=all_qpu_brand_query)
+            filtered_computer = filtered_computer.filter(id__in=all_gpu_brand_query)
         query = None
 
         for query in form.cleaned_data['storage_size']:
@@ -141,7 +141,7 @@ class ComputerFormView(FormView):
         computer_price = [str(x[0]) for x in filtered_computer.values_list('price')]
         computer_star = [str(x[0]) for x in filtered_computer.values_list('stars')]
 
-        product_data = []
+        computer_data = []
         for i in range(len(computer_title)):
 
             if computer_onsale[i] == False:
@@ -167,17 +167,17 @@ class ComputerFormView(FormView):
                 computer_title[i] = computer_title[i][0:30] + '...'
 
 
-            product_data.append({'title':computer_title[i], 'onsale':computer_onsale[i], 
+            computer_data.append({'title':computer_title[i], 'onsale':computer_onsale[i], 
                 'ogprice':computer_og_price[i], 'price':computer_price[i],'im':computer_img[i], 
                 'instock':computer_is_in_stock[i], 'available': computer_in_stocks[i], 'link': computer_link[i],
                 'recommend':computer_is_recommend[i], 'star':fullstar, 'star_num':' ('+computer_star[i]+')'})
 
-        self.request.session['product_data'] = product_data
+        self.request.session['computer_data'] = computer_data
 
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
-        context['product_data'] = self.request.session.get('product_data', [])
+        context['product_data'] = self.request.session.get('computer_data', [])
         return context
