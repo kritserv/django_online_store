@@ -113,10 +113,13 @@
 					          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          	{% if request.user.is_authenticated %}
 					          	<li><a class="dropdown-item" href="/accounts/logout">Log out</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="/admin">Admin</a></li>
 					          	{% else %}
 					            <li><a class="dropdown-item" href="/accounts/login">Login</a></li>
-					            <li><hr class="dropdown-divider"></li>
 					            <li><a class="dropdown-item" href="/accounts/signup">Signup</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="/admin">Admin</a></li>
 					            {% endif %}
 					          </ul>
 					      	</div>
