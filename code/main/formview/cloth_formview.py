@@ -48,7 +48,7 @@ class ClothFormView(FormView):
         for query in form.cleaned_data['gender']:
             if query:
                 at_least_1_query = True
-                for x in filtered_cloth.filter(is_on_sale=query).values_list('id'):
+                for x in filtered_cloth.filter(gender=query).values_list('id'):
                     all_gender_query.append(x[0])
         if form.cleaned_data['gender']:    
             filtered_cloth = filtered_cloth.filter(id__in=all_gender_query)

@@ -39,10 +39,10 @@ class HeadphoneFormView(FormView):
         for query in form.cleaned_data['is_bluetooth']:
             if query:
                 at_least_1_query = True
-                for x in filtered_headphone.filter(is_is_bluetooth=query).values_list('id'):
-                    all_is_is_bluetooth_query.append(x[0])
+                for x in filtered_headphone.filter(is_bluetooth=query).values_list('id'):
+                    all_is_bluetooth_query.append(x[0])
         if form.cleaned_data['is_bluetooth']: 
-            filtered_headphone = filtered_headphone.filter(id__in=all_is_is_bluetooth_query)
+            filtered_headphone = filtered_headphone.filter(id__in=all_is_bluetooth_query)
         query = None
 
         for query in form.cleaned_data['is_waterproof']:
