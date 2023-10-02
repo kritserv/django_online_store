@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %} 
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <script src="{% static 'js/aos.js' %}"></script>
+
+    <script>
+      AOS.init();
+    </script>
+
+<section style="background-color: #eee; width=80%;">
+  <div class="container py-6" id="prod-container">
+    <div class="row">
+      {% for prod in product_data %}
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-6">
+          <div data-aos="flip-down">
+            <a href="{{ prod.link }}">
+            <div class="card" id="prod-card">
+              <div class="d-flex">
+                {% if prod.onsale %}
+                <div class="bg-danger rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" id="sale-tag">
+                  <p class="text-white mb-0 small">{{ prod.onsale }}</p>
+                </div>
+                {% else %}
+                <p id="sale-tag"></p>
+                {% endif %}
+              </div>
+              <img src="/media/{{ prod.im }}" class="card-img-top" alt="{{ prod.title }}">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <p class="mb-0">{{ prod.instock }}</p>
+                  <p class="small text-danger"><s>{{ prod.ogprice }}</s></p>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                  <h5 class="mb-0">{{ prod.title }} {% if prod.recommend %}<br><span id="recommend-tag">{{ prod.recommend }}</span>{% else %}<br><br>{% endif %}</h5>
+                  <h5 class="text-dark mb-0">{{ prod.price }}฿</h5>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                  <p class="text-muted mb-0">Available: <span class="fw-bold">{{ prod.available }}</span></p>
+                  <div class="ms-auto text-warning">
+                    {{ prod.star }}
+                  </div>
+                  <p> {{ prod.star_num }} </p>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div>
+        </div>
+      {% empty %}
+      <div class="container-fluid">
+        <div style="margin-left: 3rem; margin-right: 25vw; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+          <h2>Sorry, there's no filtered product..</h2>
+          <h4>Select new filter or click Refresh button.</h4>
+        </div>
+      </div>
+      {% endfor %}
+      {% if product_data %}
+      <h3 style="margin-top: 2rem; margin-bottom: 7rem; margin-left: 60vw; width: 30vw;"><a href="#top">Jump to top of page</a></h3>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

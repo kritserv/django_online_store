@@ -29,6 +29,8 @@ urlpatterns = [
 	path('admin/', admin.site.urls),
 	path("", views.home, name = "home"),
 
+	path('searched/product/', views.SearchView, name='view_search'),
+
 	path("computer/product/<int:id>", views.product_computer, name = "view_product_computer"),
 	path("smartphone/product/<int:id>", views.product_smartphone, name = "view_product_smartphone"),
 	path("headphone/product/<int:id>", views.product_headphone, name = "view_product_headphone"),

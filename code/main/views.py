@@ -56,6 +56,101 @@ def product_cloth(request, id):
 	fullstar = "★" * floor(product.stars)
 	return render(request, "store/product/cloth.html", {'data': product, 'fullstar': fullstar})
 
+def SearchView(request):
+	query = request.GET.get("q")
+
+	product_object = ProductItem.objects.filter(title__icontains=query)
+	prod_data = None
+	fullstar = None
+
+	if product_object:
+		prod_link = []
+		prod_is_in_stock = []
+		prod_in_stocks = []
+		prod_is_recommend = []
+		prod_star = []
+
+		for product in product_object.values_list('title'):
+			try:
+				Computer.objects.get(title=product[0])
+				prod_link.append('/computer/product/'+str(Computer.objects.get(title=product[0]).id))
+				prod_is_in_stock.append(Computer.objects.get(title=product[0]).is_in_stock)
+				prod_in_stocks.append(Computer.objects.get(title=product[0]).in_stocks)
+				prod_is_recommend.append(Computer.objects.get(title=product[0]).is_recommend)
+				prod_star.append(Computer.objects.get(title=product[0]).stars)
+			except:
+				pass
+
+			try:
+				Smartphone.objects.get(title=product[0])
+				prod_link.append('/smartphone/product/'+str(Smartphone.objects.get(title=product[0]).id))
+				prod_is_in_stock.append(Smartphone.objects.get(title=product[0]).is_in_stock)
+				prod_in_stocks.append(Smartphone.objects.get(title=product[0]).in_stocks)
+				prod_is_recommend.append(Smartphone.objects.get(title=product[0]).is_recommend)
+				prod_star.append(Smartphone.objects.get(title=product[0]).stars)
+			except:
+				pass
+
+			try:
+				Headphone.objects.get(title=product[0])
+				prod_link.append('/headphone/product/'+str(Headphone.objects.get(title=product[0]).id))
+				prod_is_in_stock.append(Headphone.objects.get(title=product[0]).is_in_stock)
+				prod_in_stocks.append(Headphone.objects.get(title=product[0]).in_stocks)
+				prod_is_recommend.append(Headphone.objects.get(title=product[0]).is_recommend)
+				prod_star.append(Headphone.objects.get(title=product[0]).stars)
+			except:
+				pass
+
+			try:
+				Cloth.objects.get(title=product[0])
+				prod_link.append('/cloth/product/'+str(Cloth.objects.get(title=product[0]).id))
+				prod_is_in_stock.append(Cloth.objects.get(title=product[0]).is_in_stock)
+				prod_in_stocks.append(Cloth.objects.get(title=product[0]).in_stocks)
+				prod_is_recommend.append(Cloth.objects.get(title=product[0]).is_recommend)
+				prod_star.append(Cloth.objects.get(title=product[0]).stars)
+			except:
+				pass
+
+		prod_title = [x[0] for x in product_object.values_list('title')]
+		prod_onsale = [x[0] for x in product_object.values_list('is_on_sale')]
+		prod_og_price = [x[0] for x in product_object.values_list('og_price')]
+		prod_price = [x[0] for x in product_object.values_list('price')]
+		prod_img = product_object.values_list('image')
+		prod_img = [x[0].replace(' ','%20') for x in prod_img]
+
+		prod_data = []
+
+		for i in range(len(product_object)):
+			if prod_onsale[i] == False:
+				prod_og_price[i] = ''
+				
+			fullstar = "★" * floor(float(prod_star[i]))
+
+			if prod_onsale[i] == True:
+				prod_onsale[i] = 'Sale'
+			else:
+				prod_onsale[i] = ''
+
+			if prod_is_in_stock[i] == False:
+				prod_is_in_stock[i] = 'Out of Stock'
+			else:
+				prod_is_in_stock[i] = 'In Stocks'
+
+			if prod_is_recommend[i] == True:
+				prod_is_recommend[i] = 'Recommend'
+			else:
+				prod_is_recommend[i] = ''
+
+			if len(prod_title[i] + 'Recommend') > 37:
+				prod_title[i] = prod_title[i][0:30] + '...'
+
+			prod_data.append({'title':prod_title[i], 'onsale':prod_onsale[i], 
+				'ogprice':prod_og_price[i], 'price':prod_price[i],'im':prod_img[i], 
+				'instock':prod_is_in_stock[i], 'available': prod_in_stocks[i], 'link': prod_link[i],
+				'recommend':prod_is_recommend[i], 'star':fullstar, 'star_num':' ('+str(prod_star[i])+')'})
+
+	return render(request, "store/product_no_form.html", {'product_data': prod_data, 'fullstar': fullstar})
+
 @login_required
 def OrderSummaryView(request):
 	try:
