@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from products.models import *
 from order_manager.models import *
@@ -47,6 +48,35 @@ def product_cloth(request, id):
 	product = Cloth.objects.get(id=id)
 	fullstar = "★" * floor(product.stars)
 	return render(request, "store/product/cloth.html", {'data': product, 'fullstar': fullstar})
+
+@login_required
+def OrderSummaryView(request):
+	try:
+		order = Order.objects.get(user=request.user, ordered=False)
+		quantity = order.items.values_list('quantity', flat=True)
+		prod_id_list = order.items.values_list('prod_item_id', flat=True)
+		prod_list = []
+		for i in range(len(prod_id_list)):
+			prod = ProductItem.objects.get(id=prod_id_list[i])
+			if 'Unisex' in prod.title or 'Female' in prod.title or 'Male' in prod.title:
+				prodlink = "/cloth/product/"+str(Cloth.objects.get(title=prod.title).id)
+			elif 'Desktop' in prod.title or 'Laptop' in prod.title:
+				prodlink = "/computer/product/"+str(Computer.objects.get(title=prod.title).id)
+			elif 'Headphone' in prod.title or 'Headset' in prod.title or 'Earphone' in prod.title:
+				prodlink = "/headphone/product/"+str(Headphone.objects.get(title=prod.title).id)
+			else:
+				prodlink = "/smartphone/product/"+str(Smartphone.objects.get(title=prod.title).id)
+
+			prod_list.append({'title': prod.title, 'prodlink': prodlink, 'image': prod.image, 'price': prod.price, 'totalprice': prod.price*quantity[i], 'quantity': quantity[i]})
+		
+		total_item = sum([prod['quantity'] for prod in prod_list])
+		total_and_delivery_price = sum([prod['totalprice'] for prod in prod_list]) + 50
+
+	except ObjectDoesNotExist:
+		messages.error(request, "You don't have an active order")
+		return redirect(request.META.get('HTTP_REFERER'))
+
+	return render(request, 'store/order_summary.html', {'prodlist': prod_list, 'total_item': total_item, 'total_and_delivery_price': total_and_delivery_price})
 
 @login_required
 def add_to_cart(request, title):

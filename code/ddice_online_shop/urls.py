@@ -38,6 +38,8 @@ urlpatterns = [
 	path('headphone/', HeadphoneFormView.as_view(), name='view_headphone'),
 	path('cloth/', ClothFormView.as_view(), name='view_cloth'),
 
+	path('ordersummary/', views.OrderSummaryView, name='order_summary_view'),
+
 	path("product/addtocart/<str:title>", views.add_to_cart, name = "add_to_cart"),
 	path("product/removefromcart/<str:title>", views.remove_from_cart, name = "remove_from_cart"),
 	path("product/removeonefromcart/<str:title>", views.remove_single_item_from_cart, name = "remove_one_from_cart"),
