@@ -113,7 +113,6 @@ class ClothFormView(FormView):
             if len(cloth_title[i] + 'Recommend') > 37:
                 cloth_title[i] = cloth_title[i][0:30] + '...'
 
-
             cloth_data.append({'title':cloth_title[i], 'onsale':cloth_onsale[i], 
                 'ogprice':cloth_og_price[i], 'price':cloth_price[i],'im':cloth_img[i], 
                 'instock':cloth_is_in_stock[i], 'available': cloth_in_stocks[i], 'link': cloth_link[i],
