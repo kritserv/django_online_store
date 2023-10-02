@@ -9,6 +9,7 @@ from math import floor
 from .get_first_request.get_all_computer_data import GetAllComputerData
 from .get_first_request.get_all_smartphone_data import GetAllSmartphoneData
 from .get_first_request.get_all_headphone_data import GetAllHeadphoneData
+from .get_first_request.get_all_cloth_data import GetAllClothData
 
 # Create your views here.
 def home(request):
@@ -21,6 +22,9 @@ def home(request):
 
 	if 'headphone_data' not in request.session:
 		request.session['headphone_data'] = GetAllHeadphoneData()
+
+	if 'cloth_data' not in request.session:
+		request.session['cloth_data'] = GetAllClothData()
 
 	return render(request, "homepage.html")
 
@@ -38,6 +42,11 @@ def product_headphone(request, id):
 	product = Headphone.objects.get(id=id)
 	fullstar = "★" * floor(product.stars)
 	return render(request, "store/product/headphone.html", {'data': product, 'fullstar': fullstar})
+
+def product_cloth(request, id):
+	product = Cloth.objects.get(id=id)
+	fullstar = "★" * floor(product.stars)
+	return render(request, "store/product/cloth.html", {'data': product, 'fullstar': fullstar})
 
 @login_required
 def add_to_cart(request, title):
