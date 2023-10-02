@@ -1,10 +1,42 @@
 # First time setup guide
 
+Change directory into code.
 
+```
+docker-compose up -d --build
+```
+
+# Important step (Program will not run properly if skip!)
+
+## After Docker Build Command
+
+Stop the container, it will keep running because the database doesn't exist yet.
+
+Since docker will not run migrations before django run successfully for the first time.
+
+In code/ddice_online_shop/urls.py ignore these line with hashtag.
+```
+...
+20    #from main.formview.computer_formview import ComputerFormView
+21    #from main.formview.smartphone_formview import SmartphoneFormView
+22    #from main.formview.headphone_formview import HeadphoneFormView
+23    #from main.formview.cloth_formview import ClothFormView
+
+...
+
+37        #path('computer/', ComputerFormView.as_view(), name='view_computer'),
+38        #path('smartphone/', SmartphoneFormView.as_view(), name='view_smartphone'),
+39        #path('headphone/', HeadphoneFormView.as_view(), name='view_headphone'),
+40        #path('cloth/', ClothFormView.as_view(), name='view_cloth'),
+...
+```
+
+Start docker-compose again, Then remove these hashtag after migrations are completed.
+After that, restart code-app image and proceed to next step.
 
 ## Insert data to database via python shell
 
-Shell into python app from code-app-1 terminal
+Shell into python app from code-app terminal
 
 ```
 python manage.py shell
@@ -88,10 +120,10 @@ Cloth(id=54, title="Uniqueme T-Shirt Unisex (S) (BLack)", brand=Brand.objects.ge
 Cloth(id=55, title="Uniqueme T-Shirt Unisex (M) (Black)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt black uni.png", color="Black", is_in_stock=True, in_stocks=23, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="M").save()
 Cloth(id=56, title="Uniqueme T-Shirt Unisex (L) (Black)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt black uni.png", color="Black", is_in_stock=True, in_stocks=26, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="L").save()
 Cloth(id=57, title="Uniqueme T-Shirt Unisex (XL) (Black)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt black uni.png", color="Black", is_in_stock=True, in_stocks=37, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="Xl").save()
-Cloth(id=58, title="Uniqueme T-Shirt Unisex (S) (Orange)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt orange uni.png", color="Black", is_in_stock=True, in_stocks=44, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="S").save()
-Cloth(id=59, title="Uniqueme T-Shirt Unisex (M) (Orange)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt orange uni.png", color="Black", is_in_stock=True, in_stocks=75, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="M").save()
-Cloth(id=60, title="Uniqueme T-Shirt Unisex (L) (Orange)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt orange uni.png", color="Black", is_in_stock=True, in_stocks=53, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="L").save()
-Cloth(id=61, title="Uniqueme T-Shirt Unisex (XL) (Orange)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt orange uni.png", color="Black", is_in_stock=True, in_stocks=12, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="Xl").save()
+Cloth(id=58, title="Uniqueme T-Shirt Unisex (S) (Orange)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt orange uni.png", color="Orange", is_in_stock=True, in_stocks=44, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="S").save()
+Cloth(id=59, title="Uniqueme T-Shirt Unisex (M) (Orange)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt orange uni.png", color="Orange", is_in_stock=True, in_stocks=75, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="M").save()
+Cloth(id=60, title="Uniqueme T-Shirt Unisex (L) (Orange)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt orange uni.png", color="Orange", is_in_stock=True, in_stocks=53, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="L").save()
+Cloth(id=61, title="Uniqueme T-Shirt Unisex (XL) (Orange)", brand=Brand.objects.get(title="Uniqueme"), image="media/model_img/cloths/uniqueme tshirt orange uni.png", color="Orange", is_in_stock=True, in_stocks=12, is_on_sale=True, og_price=670, price=490, stars=4.0, is_recommend=True, gender="Unisex", cloth_type="T-shirt", size="Xl").save()
 
 Computer(id=1, title="Desktop PC KG Designer k0 including monitor (Black)", brand=Brand.objects.get(title="Kg"), image="media/model_img/computers/kg designer k0 desktop with monitor black.png", color="Black", is_in_stock=True, in_stocks=67, is_on_sale=False, og_price=15800, price=15800, stars=2.1, is_recommend=False, is_laptop=False, is_gamingtype=False, has_monitor=True, cpu="Bluei b3-9100", cpu_brand="Bluei", ram="4Gb", gpu="Bluei UHD Graphics 100", gpu_brand="Bluei", storage="2Tb", storage_type="Hdd", size='24"', case="Micro-atx", resolution="1080P", refresh_rate="60Hz", display="Ips", weight="7.12", os="Windows11").save()
 Computer(id=2, title="Desktop PC KG Designer k5 including monitor (Black)", brand=Brand.objects.get(title="Kg"), image="media/model_img/computers/kg designer k0 desktop with monitor black.png", color="Black", is_in_stock=True, in_stocks=37, is_on_sale=False, og_price=20800, price=20800, stars=2.1, is_recommend=False, is_laptop=False, is_gamingtype=False, has_monitor=True, cpu="Bluei b5-9500", cpu_brand="Bluei", ram="8Gb", gpu="Bluei UHD Graphics 100", gpu_brand="Bluei", storage="2Tb", storage_type="Hdd", size='24"', case="Micro-atx", resolution="1080P", refresh_rate="60Hz", display="Ips", weight="7.12", os="Windows11").save()

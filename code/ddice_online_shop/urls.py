@@ -21,6 +21,7 @@ from main.formview.computer_formview import ComputerFormView
 from main.formview.smartphone_formview import SmartphoneFormView
 from main.formview.headphone_formview import HeadphoneFormView
 from main.formview.cloth_formview import ClothFormView
+from main.views import CheckoutView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -39,6 +40,10 @@ urlpatterns = [
 	path('cloth/', ClothFormView.as_view(), name='view_cloth'),
 
 	path('ordersummary/', views.OrderSummaryView, name='order_summary_view'),
+	path('clearorder/', views.ClearOrder, name='clear_order'),
+
+	path('checkout/', CheckoutView.as_view(), name='checkout'),
+	path("payment/", views.TestPayment, name = "payment"),
 
 	path("product/addtocart/<str:title>", views.add_to_cart, name = "add_to_cart"),
 	path("product/removefromcart/<str:title>", views.remove_from_cart, name = "remove_from_cart"),

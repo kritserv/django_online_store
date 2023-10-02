@@ -6,3 +6,4 @@ django-extensions==3.2.3
 django-crispy-forms==2.0
 crispy-bootstrap4==2022.1
 django-allauth==0.57.0
+stripe==6.6.0

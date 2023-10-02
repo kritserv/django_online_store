@@ -6,11 +6,18 @@ from django.utils import timezone
 from products.models import *
 from order_manager.models import *
 from math import floor
+from django.conf import settings
+from django.views.generic import View
 
 from .get_first_request.get_all_computer_data import GetAllComputerData
 from .get_first_request.get_all_smartphone_data import GetAllSmartphoneData
 from .get_first_request.get_all_headphone_data import GetAllHeadphoneData
 from .get_first_request.get_all_cloth_data import GetAllClothData
+
+from .form.paymethod import CheckoutForm
+
+import stripe
+#stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Create your views here.
 def home(request):
@@ -58,7 +65,7 @@ def OrderSummaryView(request):
 		prod_list = []
 		for i in range(len(prod_id_list)):
 			prod = ProductItem.objects.get(id=prod_id_list[i])
-			if 'Unisex' in prod.title or 'Female' in prod.title or 'Male' in prod.title:
+			if 'unisex' in prod.title or 'Unisex' in prod.title or 'Female' in prod.title or 'Male' in prod.title:
 				prodlink = "/cloth/product/"+str(Cloth.objects.get(title=prod.title).id)
 			elif 'Desktop' in prod.title or 'Laptop' in prod.title:
 				prodlink = "/computer/product/"+str(Computer.objects.get(title=prod.title).id)
@@ -152,3 +159,125 @@ def remove_single_item_from_cart(request, title):
 	else:
 		messages.info(request, "You do not have an active order")
 		return redirect(request.META.get('HTTP_REFERER'))
+
+def is_valid_form(values):
+	valid = True
+	for field in values:
+		if field == '':
+			valid = False
+	return valid
+
+class CheckoutView(View):
+	def get(self, *args, **kwargs):
+		try:
+			order = Order.objects.get(user=self.request.user, ordered=False)
+			form = CheckoutForm()
+			context = {
+				'form': form,
+				'order': order,
+			}
+
+			shipping_address_qs = Address.objects.filter(
+				user=self.request.user,
+				address_type='S',
+				default=True
+			)
+			if shipping_address_qs.exists():
+				context.update(
+					{'default_shipping_address': shipping_address_qs[0]})
+
+			billing_address_qs = Address.objects.filter(
+				user=self.request.user,
+				address_type='B',
+				default=True
+			)
+			if billing_address_qs.exists():
+				context.update(
+					{'default_billing_address': billing_address_qs[0]})
+			return render(self.request, "store/checkout.html", context)
+		except ObjectDoesNotExist:
+			messages.info(self.request, "You do not have an active order")
+			return redirect("checkout")
+
+	def post(self, *args, **kwargs):
+		form = CheckoutForm(self.request.POST or None)
+		try:
+			order = Order.objects.get(user=self.request.user, ordered=False)
+			if form.is_valid():
+
+				use_default_shipping = form.cleaned_data.get(
+					'use_default_shipping')
+				if use_default_shipping:
+					address_qs = Address.objects.filter(
+						user=self.request.user,
+						address_type='S',
+						default=True
+					)
+					if address_qs.exists():
+						shipping_address = address_qs[0]
+						order.shipping_address = shipping_address
+						order.save()
+					else:
+						messages.info(
+							self.request, "No default shipping address available")
+						return redirect('checkout')
+				else:
+					shipping_address1 = form.cleaned_data.get(
+						'shipping_address')
+					shipping_address2 = form.cleaned_data.get(
+						'shipping_address2')
+					shipping_country = form.cleaned_data.get(
+						'shipping_country')
+					shipping_zip = form.cleaned_data.get('shipping_zip')
+
+					if is_valid_form([shipping_address1, shipping_country, shipping_zip]):
+						shipping_address = Address(
+							user=self.request.user,
+							street_address=shipping_address1,
+							apartment_address=shipping_address2,
+							zip=shipping_zip,
+							address_type='S'
+						)
+						shipping_address.save()
+
+						order.shipping_address = shipping_address
+						order.save()
+
+						set_default_shipping = form.cleaned_data.get(
+							'set_default_shipping')
+						if set_default_shipping:
+							shipping_address.default = True
+							shipping_address.save()
+
+					else:
+						messages.info(
+							self.request, "Please fill in the required shipping address fields")
+						return redirect("checkout")
+
+				payment_option = form.cleaned_data.get('payment_option')
+
+				if payment_option == 'S':
+					return redirect('payment')
+				else: # payment_option == 'P':
+					return redirect('payment')
+
+		except ObjectDoesNotExist:
+			messages.warning(self.request, "You do not have an active order")
+			return redirect("ordersummary")
+
+def TestPayment(request):
+
+	return render(request, "store/payment.html")
+
+@login_required
+def ClearOrder(request):
+	try:
+		order = Order.objects.get(user=request.user)
+		Order(id=order.id, user=order.user, items=order.items, start_date=order.start_date, ordered_date=order.ordered_date, ordered=True).save()
+		messages.info(request, "Thank you for testing my website!, Order successful")
+
+	except:
+		messages.error(request, "Order not successful!")
+		return redirect(request.META.get('HTTP_REFERER'))
+
+	return render(request, 'store/order_summary.html')

@@ -157,4 +157,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     ]
 
+# STRIPE_PUBLIC_KEY = ''
+# STRIPE_SECRET_KEY = ''
+
 LOGIN_REDIRECT_URL = '/'
