@@ -19,6 +19,7 @@ from django.urls import include, path
 from main import views
 from main.formview.computer_formview import ComputerFormView
 from main.formview.smartphone_formview import SmartphoneFormView
+from main.formview.headphone_formview import HeadphoneFormView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,13 +29,15 @@ urlpatterns = [
 
     path("computer/product/<int:id>", views.product_computer, name = "view_product_computer"),
     path("smartphone/product/<int:id>", views.product_smartphone, name = "view_product_smartphone"),
+    path("headphone/product/<int:id>", views.product_headphone, name = "view_product_headphone"),
 
-    path('computer/', ComputerFormView.as_view(), name='view_computer'),    
+    path('computer/', ComputerFormView.as_view(), name='view_computer'),
     path('smartphone/', SmartphoneFormView.as_view(), name='view_smartphone'),
+    path('headphone/', HeadphoneFormView.as_view(), name='view_headphone'),
 
-    path("computer/product/addtocart/<str:title>", views.add_to_cart, name = "add_to_cart"),
-    path("computer/product/removefromcart/<str:title>", views.remove_from_cart, name = "remove_from_cart"),
-    path("computer/product/removeonefromcart/<str:title>", views.remove_single_item_from_cart, name = "remove_one_from_cart"),
+    path("product/addtocart/<str:title>", views.add_to_cart, name = "add_to_cart"),
+    path("product/removefromcart/<str:title>", views.remove_from_cart, name = "remove_from_cart"),
+    path("product/removeonefromcart/<str:title>", views.remove_single_item_from_cart, name = "remove_one_from_cart"),
 
     path('accounts/', include('allauth.urls')),
     

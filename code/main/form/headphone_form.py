@@ -1,9 +1,9 @@
 from django import forms
-from products.models import Computer
+from products.models import Headphone
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
-class ComputerForm(forms.Form):
+class HeadphoneForm(forms.Form):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
@@ -11,16 +11,16 @@ class ComputerForm(forms.Form):
 		self.helper.form_method = 'POST'
 		self.helper.add_input(Submit('submit', 'Submit'))
 
-	QUERY_FIELDS = ['is_in_stock', 'is_on_sale','is_laptop', 'is_gamingtype', 'color', 'cpu', 'cpu_brand', 'ram', 'gpu', 'gpu_brand', 'storage', 'os']
+	QUERY_FIELDS = ['is_in_stock', 'is_on_sale','is_bluetooth', 'is_waterproof', 'has_noise_cancelling', 'has_microphone', 'color', 'headphone_type', 'port', 'frequency_response']
 
 	FORM = []
 
 	for q in QUERY_FIELDS:
 
 		CHOICES = []
-		for x in Computer.objects.values(q).distinct().order_by(q):
+		for x in Headphone.objects.values(q).distinct().order_by(q):
 			CHOICES.append((x[q], x[q]))
 
 		FORM.append(forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False))
 
-	product_available, on_sale, laptop, gaming, color, cpu, cpu_brand, ram, gpu, gpu_brand, storage_size, operating_system = FORM
+	product_available, on_sale, is_bluetooth, is_waterproof, has_noise_cancelling, has_microphone, color, headphone_type, port, frequency_response = FORM

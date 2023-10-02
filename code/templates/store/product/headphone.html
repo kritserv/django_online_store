@@ -10,7 +10,7 @@
     </script>
 
 
-    <a href="/computer" id="filter-btn"><- Return</a>
+    <a href="/headphone" id="filter-btn"><- Return</a>
 
     <div class="container-fluid">
     <div class="d-flex justify-content-between mb-2" id="prod-detail-page">
@@ -63,7 +63,7 @@
     </div>
 
     <br><br><br>
-        <h3>Computer information</h3>
+        <h3>Headphone information</h3>
         <br>
         <table id="detail-table">
           <tbody>
@@ -72,63 +72,33 @@
               <td>{{ data.title }}</td>
             </tr>
             <tr>
-              <td>Processor</td>
-              <td>{{ data.cpu }}</td>
+              <td>Bluetooth</td>
+              <td>{{ data.is_bluetooth }}</td>
             </tr>
             <tr>
-              <td>Memory size</td>
-              <td>{{ data.ram }}</td>
+              <td>Waterproof</td>
+              <td>{{ data.is_waterproof }}</td>
             </tr>
             <tr>
-              <td>Graphics card</td>
-              <td>{{ data.gpu }}</td>
+              <td>Noise cancelling</td>
+              <td>{{ data.has_noise_cancelling }}</td>
             </tr>
             <tr>
-              <td>Storage</td>
-              <td>{{ data.storage }} {{ data.storage_type }}</td>
+              <td>Microphone</td>
+              <td>{{ data.has_microphone }}</td>
             </tr>
-            {% if data.size %}
             <tr>
-              <td>Size</td>
-              <td>{{ data.size }}</td>
+              <td>Headphone type</td>
+              <td>{{ data.headphone_type }}</td>
             </tr>
-            {% endif %}
-            {% if data.case %}
             <tr>
-              <td>Case</td>
-              <td>{{ data.case }}</td>
+              <td>Port</td>
+              <td>{{ data.port }}</td>
             </tr>
-            {% endif %}
-            {% if data.resolution %}
             <tr>
-              <td>Resolution</td>
-              <td>{{ data.resolution }}</td>
+              <td>Frequency response</td>
+              <td>{{ data.frequency_response }}</td>
             </tr>
-            {% endif %}
-            {% if data.refresh_rate %}
-            <tr>
-              <td>Refresh rate</td>
-              <td>{{ data.refresh_rate }}</td>
-            </tr>
-            {% endif %}
-            {% if data.display %}
-            <tr>
-              <td>Display</td>
-              <td>{{ data.display }}</td>
-            </tr>
-            {% endif %}
-            {% if data.weight %}
-            <tr>
-              <td>Weight</td>
-              <td>{{ data.weight }}</td>
-            </tr>
-            {% endif %}
-            {% if data.os %}
-            <tr>
-              <td>Operating system</td>
-              <td>{{ data.os }}</td>
-            </tr>
-            {% endif %}
           </tbody>
         </table>
     </div>

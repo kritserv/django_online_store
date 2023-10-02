@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
-from products.models import *
+from products.models import Computer
 from main.form.computer_form import ComputerForm
 from math import floor
 

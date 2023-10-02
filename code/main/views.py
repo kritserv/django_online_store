@@ -4,9 +4,11 @@ from django.contrib import messages
 from django.utils import timezone
 from products.models import *
 from order_manager.models import *
+from math import floor
 
 from .get_first_request.get_all_computer_data import GetAllComputerData
 from .get_first_request.get_all_smartphone_data import GetAllSmartphoneData
+from .get_first_request.get_all_headphone_data import GetAllHeadphoneData
 
 # Create your views here.
 def home(request):
@@ -16,6 +18,9 @@ def home(request):
 
 	if 'smartphone_data' not in request.session:
 		request.session['smartphone_data'] = GetAllSmartphoneData()
+
+	if 'headphone_data' not in request.session:
+		request.session['headphone_data'] = GetAllHeadphoneData()
 
 	return render(request, "homepage.html")
 
@@ -28,6 +33,11 @@ def product_smartphone(request, id):
 	product = Smartphone.objects.get(id=id)
 	fullstar = "★" * floor(product.stars)
 	return render(request, "store/product/smartphone.html", {'data': product, 'fullstar': fullstar})
+
+def product_headphone(request, id):
+	product = Headphone.objects.get(id=id)
+	fullstar = "★" * floor(product.stars)
+	return render(request, "store/product/headphone.html", {'data': product, 'fullstar': fullstar})
 
 @login_required
 def add_to_cart(request, title):
