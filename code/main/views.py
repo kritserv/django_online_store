@@ -52,19 +52,19 @@ def add_to_cart(request, title):
 			order_item.quantity += 1
 			order_item.save()
 			messages.info(request, "This item quality from your cart was updated.")
-			return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+			return redirect(request.META.get('HTTP_REFERER'))
 		else:
 			order_item = OrderProductItem.objects.create(prod_item=prod_item, user=request.user, ordered=False)
 			order.items.add(order_item)
 			messages.info(request, "This item was added to your cart.")
-			return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+			return redirect(request.META.get('HTTP_REFERER'))
 	else:
 		ordered_date = timezone.now()
 		order = Order.objects.create(user=request.user, ordered_date=ordered_date)
 		order_item = OrderProductItem.objects.create(prod_item=prod_item, user=request.user, ordered=False)
 		order.items.add(order_item)
 		messages.info(request, "This item was added to from your cart.")
-		return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+		return redirect(request.META.get('HTTP_REFERER'))
 
 @login_required
 def remove_from_cart(request, title):
@@ -79,13 +79,13 @@ def remove_from_cart(request, title):
 			order.items.remove(order_item)
 			order_item.delete()
 			messages.info(request, "This item was removed from your cart.")
-			return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+			return redirect(request.META.get('HTTP_REFERER'))
 		else:
 			messages.info(request, "This item was not in your cart")
-			return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+			return redirect(request.META.get('HTTP_REFERER'))
 	else:
 		messages.info(request, "You do not have an active order")
-		return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+		return redirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
@@ -102,14 +102,14 @@ def remove_single_item_from_cart(request, title):
 				order_item.quantity -= 1
 				order_item.save()
 				messages.info(request, "This item quantity was updated.")
-				return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+				return redirect(request.META.get('HTTP_REFERER'))
 			else:
 				order.items.remove(order_item)
 				messages.info(request, "This item quantity was updated.")
-				return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+				return redirect(request.META.get('HTTP_REFERER'))
 		else:
 			messages.info(request, "This item was not in your cart")
-			return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+			return redirect(request.META.get('HTTP_REFERER'))
 	else:
 		messages.info(request, "You do not have an active order")
-		return redirect("view_product_computer", id=Computer.objects.get(title=title).id)
+		return redirect(request.META.get('HTTP_REFERER'))
