@@ -273,7 +273,8 @@ def TestPayment(request):
 def ClearOrder(request):
 	try:
 		order = Order.objects.get(user=request.user)
-		Order(id=order.id, user=order.user, items=order.items, start_date=order.start_date, ordered_date=order.ordered_date, ordered=True).save()
+		order.ordered = True
+		order.save(update_fields=["ordered"])
 		messages.info(request, "Thank you for testing my website!, Order successful")
 
 	except:
