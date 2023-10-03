@@ -19,8 +19,7 @@ html {
      margin-top: 4rem;
 }
  #prod-card {
-     width:95%;
-     max-width: 40vw;
+     width:100%;
 }
  #prod-card:hover {
      scale: 1.07;

@@ -8,6 +8,7 @@ from order_manager.models import *
 from math import floor
 from django.conf import settings
 from django.views.generic import View
+from guest_user.decorators import allow_guest_user
 
 from .get_first_request.get_all_computer_data import GetAllComputerData
 from .get_first_request.get_all_smartphone_data import GetAllSmartphoneData
@@ -150,6 +151,10 @@ def SearchView(request):
 				'recommend':prod_is_recommend[i], 'star':fullstar, 'star_num':' ('+str(prod_star[i])+')'})
 
 	return render(request, "store/product_no_form.html", {'product_data': prod_data, 'fullstar': fullstar})
+
+@allow_guest_user
+def LoginGuestView(request):
+	return redirect(request.META.get('HTTP_REFERER'))
 
 @login_required
 def OrderSummaryView(request):

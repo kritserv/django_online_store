@@ -52,5 +52,8 @@ urlpatterns = [
 	path("product/removeonefromcart/<str:title>", views.remove_single_item_from_cart, name = "remove_one_from_cart"),
 
 	path('accounts/', include('allauth.urls')),
+
+	path("loginguest/", views.LoginGuestView, name='login_guest'),
+	path("convert/", include("guest_user.urls")),
 	
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
