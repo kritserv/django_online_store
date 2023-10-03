@@ -53,7 +53,7 @@ Brand(id=6, title="Orange", image="media/model_img/brands/Orange.png").save()
 Brand(id=7, title="Ros", image="media/model_img/brands/Ros.png").save()
 Brand(id=8, title="Suityou", image="media/model_img/brands/Suityou.png").save()
 Brand(id=9, title="Uniqueme", image="media/model_img/brands/Uniqueme.png").save()
-Brand(id=10, title="Zeus", image="media/model_img/brands/Zues.png").save()
+Brand(id=10, title="Zeus", image="media/model_img/brands/Zeus.png").save()
 
 Cloth(id=1, title="DDICE Hoodie unisex (S) (Black)", brand=Brand.objects.get(title="Ddice"), image="media/model_img/cloths/ddice hoodie black uni.png", color="Black", is_in_stock=True, in_stocks=120, is_on_sale=False, og_price=550, price=550, stars=3.9, is_recommend=True, gender="Unisex", cloth_type="Hoody", size="S").save()
 Cloth(id=2, title="DDICE Hoodie unisex (M) (Black)", brand=Brand.objects.get(title="Ddice"), image="media/model_img/cloths/ddice hoodie black uni.png", color="Black", is_in_stock=True, in_stocks=110, is_on_sale=False, og_price=550, price=550, stars=3.9, is_recommend=True, gender="Unisex", cloth_type="Hoody", size="M").save()

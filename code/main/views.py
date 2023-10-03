@@ -34,7 +34,7 @@ def home(request):
 	if 'cloth_data' not in request.session:
 		request.session['cloth_data'] = GetAllClothData()
 
-	return render(request, "homepage.html")
+	return render(request, "homepage.html", {'brand_data': Brand.objects.all()})
 
 def product_computer(request, id):
 	product = Computer.objects.get(id=id)
