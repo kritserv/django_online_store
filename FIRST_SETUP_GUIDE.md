@@ -1,20 +1,17 @@
 # First time setup guide
 
-Change directory into code.
+Change the directory to `/code`.
 
 ```
 docker-compose up -d --build
 ```
 
-# Important step (Program will not run properly if skip!)
+# Important Step (Program Will Not Run Properly If Skipped!)
 
 ## After Docker Build Command
 
-Stop the container, it will keep running because the database doesn't exist yet.
+Stop the container; it will keep restarting because the database doesn't exist yet. Docker will not run migrations before Django runs successfully for the first time.
 
-Since docker will not run migrations before django run successfully for the first time.
-
-In code/ddice_online_shop/urls.py ignore these line with hashtag.
 ```
 ...
 20    #from main.formview.computer_formview import ComputerFormView
@@ -31,27 +28,22 @@ In code/ddice_online_shop/urls.py ignore these line with hashtag.
 ...
 ```
 
-Start docker-compose again, Then remove these hashtag after migrations are completed.
-After that, restart code-app image and proceed to next step.
+Start docker-compose again. Then, remove these hashtags after migrations are completed. After that, restart the code-app image and proceed to the next step.
 
-## Insert data to database via python shell
+## Insert data to database via Python
 
-Shell into python app from code-app terminal
+Access the Python app shell from the code-app terminal:
 
 ```
 python manage.py shell
 ```
 
-Import product models
+Import product models and add data:
 
 ```
 from products.models import *
 from order_manager.models import *
-```
 
-Adding data
-
-```
 Brand(id=1, title="Birdblue", image="media/model_img/brands/Birdblue.png").save()
 Brand(id=2, title="Ddice", image="media/model_img/brands/Ddice.png").save()
 Brand(id=3, title="Doll", image="media/model_img/brands/Doll.png").save()
@@ -179,28 +171,116 @@ Smartphone(id=6, title="Orange OR20 (8Gb + 128Gb)", brand=Brand.objects.get(titl
 Smartphone(id=7, title="Ros S16 (4Gb + 128Gb) Red", brand=Brand.objects.get(title="Ros"), image="media/model_img/smartphones/rose s16 red.png", color="Red", is_in_stock=False, in_stocks=0, is_on_sale=False, og_price=10900, price=10900, stars=4.2, is_recommend=True, is_tablet=False, is_flagship=True, processor="Snapd 720", processor_brand="Snapd", ram="4Gb", storage="128Gb", size='6.6"', resolution="1440P", refresh_rate="75Hz", display="Ips", weight=0.22, os="Android12", front_camera="12Mp", back_camera="32Mp", sim="2Sim").save()
 Smartphone(id=8, title="Ros S16 (4Gb + 128Gb) White", brand=Brand.objects.get(title="Ros"), image="media/model_img/smartphones/rose s16 white.png", color="White", is_in_stock=True, in_stocks=64, is_on_sale=False, og_price=10900, price=10900, stars=4.2, is_recommend=True, is_tablet=False, is_flagship=True, processor="Snapd 720", processor_brand="Snapd", ram="4Gb", storage="128Gb", size='6.6"', resolution="1440P", refresh_rate="75Hz", display="Ips", weight=0.22, os="Android12", front_camera="12Mp", back_camera="32Mp", sim="2Sim").save()
 
-ID = 0
-for i in range(len(Cloth.objects.all())):
-	ID += 1
-	current = Cloth.objects.get(id=i+1)
-
-	ProductItem(id=ID, title=current.title, image=current.image, og_price=current.og_price, price=current.price, is_on_sale=current.is_on_sale).save()
-
-for i in range(len(Computer.objects.all())):
-	ID += 1
-	current = Computer.objects.get(id=i+1)
-
-	ProductItem(id=ID, title=current.title, image=current.image, og_price=current.og_price, price=current.price, is_on_sale=current.is_on_sale).save()
-
-for i in range(len(Headphone.objects.all())):
-	ID += 1
-	current = Headphone.objects.get(id=i+1)
-
-	ProductItem(id=ID, title=current.title, image=current.image, og_price=current.og_price, price=current.price, is_on_sale=current.is_on_sale).save()
-
-for i in range(len(Smartphone.objects.all())):
-	ID += 1
-	current = Smartphone.objects.get(id=i+1)
-
-	ProductItem(id=ID, title=current.title, image=current.image, og_price=current.og_price, price=current.price, is_on_sale=current.is_on_sale).save()
+ProductItem(id=1, title='DDICE Hoodie unisex (S) (Black)', image='media/model_img/cloths/ddice hoodie black uni.png', og_price=550, price=550, is_on_sale=False).save()
+ProductItem(id=2, title='DDICE Hoodie unisex (M) (Black)', image='media/model_img/cloths/ddice hoodie black uni.png', og_price=550, price=550, is_on_sale=False).save()
+ProductItem(id=3, title='DDICE Hoodie unisex (L) (Black)', image='media/model_img/cloths/ddice hoodie black uni.png', og_price=550, price=550, is_on_sale=False).save()
+ProductItem(id=4, title='DDICE Hoodie unisex (XL) (Black)', image='media/model_img/cloths/ddice hoodie black uni.png', og_price=550, price=550, is_on_sale=False).save()
+ProductItem(id=5, title='DDICE Hoodie unisex (S) (Blue)', image='media/model_img/cloths/ddice hoodie blue uni.png', og_price=550, price=550, is_on_sale=False).save()
+ProductItem(id=6, title='DDICE Hoodie unisex (M) (Blue)', image='media/model_img/cloths/ddice hoodie blue uni.png', og_price=550, price=550, is_on_sale=False).save()
+ProductItem(id=7, title='DDICE Hoodie unisex (L) (Blue)', image='media/model_img/cloths/ddice hoodie blue uni.png', og_price=550, price=550, is_on_sale=False).save()
+ProductItem(id=8, title='DDICE Hoodie unisex (XL) (Blue)', image='media/model_img/cloths/ddice hoodie blue uni.png', og_price=550, price=550, is_on_sale=False).save()
+ProductItem(id=9, title='SuitYou Hoodie unisex (S) (Black)', image='media/model_img/cloths/suityou hoodie black uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=10, title='SuitYou Hoodie unisex (M) (Black)', image='media/model_img/cloths/suityou hoodie black uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=11, title='SuitYou Hoodie unisex (L) (Black)', image='media/model_img/cloths/suityou hoodie black uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=12, title='SuitYou Hoodie unisex (XL) (Black)', image='media/model_img/cloths/suityou hoodie black uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=13, title='SuitYou Hoodie unisex (S) (Red)', image='media/model_img/cloths/suityou hoodie red uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=14, title='SuitYou Hoodie unisex (M) (Red)', image='media/model_img/cloths/suityou hoodie red uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=15, title='SuitYou Hoodie unisex (L) (Red)', image='media/model_img/cloths/suityou hoodie red uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=16, title='SuitYou Hoodie unisex (XL) (Red)', image='media/model_img/cloths/suityou hoodie red uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=17, title='SuitYou Hoodie unisex (S) (White)', image='media/model_img/cloths/suityou hoodie white uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=18, title='SuitYou Hoodie unisex (M) (White)', image='media/model_img/cloths/suityou hoodie white uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=19, title='SuitYou Hoodie unisex (L) (White)', image='media/model_img/cloths/suityou hoodie white uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=20, title='SuitYou Hoodie unisex (XL) (White)', image='media/model_img/cloths/suityou hoodie white uni.png', og_price=750, price=690, is_on_sale=True).save()
+ProductItem(id=21, title='SuitYou Sweatshirt unisex (S) (Red)', image='media/model_img/cloths/suityou sweatshirt red uni.png', og_price=650, price=600, is_on_sale=True).save()
+ProductItem(id=22, title='SuitYou Sweatshirt unisex (M) (Red)', image='media/model_img/cloths/suityou sweatshirt red uni.png', og_price=650, price=600, is_on_sale=True).save()
+ProductItem(id=23, title='SuitYou Sweatshirt unisex (L) (Red)', image='media/model_img/cloths/suityou sweatshirt red uni.png', og_price=650, price=600, is_on_sale=True).save()
+ProductItem(id=24, title='SuitYou Sweatshirt unisex (S) (Yellow)', image='media/model_img/cloths/suityou sweatshirt yellow uni.png', og_price=650, price=600, is_on_sale=True).save()
+ProductItem(id=25, title='SuitYou Sweatshirt unisex (M) (Yellow)', image='media/model_img/cloths/suityou sweatshirt yellow uni.png', og_price=650, price=600, is_on_sale=True).save()
+ProductItem(id=26, title='SuitYou Sweatshirt unisex (L) (Yellow)', image='media/model_img/cloths/suityou sweatshirt yellow uni.png', og_price=650, price=600, is_on_sale=True).save()
+ProductItem(id=27, title='SuitYou T-Shirt Male (S) (Navi)', image='media/model_img/cloths/suityou tshirt navi male.png', og_price=840, price=840, is_on_sale=False).save()
+ProductItem(id=28, title='SuitYou T-Shirt Male (M) (Navi)', image='media/model_img/cloths/suityou tshirt navi male.png', og_price=840, price=840, is_on_sale=False).save()
+ProductItem(id=29, title='SuitYou T-Shirt Male (L) (Navi)', image='media/model_img/cloths/suityou tshirt navi male.png', og_price=840, price=840, is_on_sale=False).save()
+ProductItem(id=30, title='SuitYou T-Shirt Male (XL) (Navi)', image='media/model_img/cloths/suityou tshirt navi male.png', og_price=840, price=840, is_on_sale=False).save()
+ProductItem(id=31, title='SuitYou T-Shirt Male (S) (White)', image='media/model_img/cloths/suityou tshirt white male.png', og_price=840, price=840, is_on_sale=False).save()
+ProductItem(id=32, title='SuitYou T-Shirt Male (M) (White)', image='media/model_img/cloths/suityou tshirt white male.png', og_price=840, price=840, is_on_sale=False).save()
+ProductItem(id=33, title='SuitYou T-Shirt Male (L) (White)', image='media/model_img/cloths/suityou tshirt white male.png', og_price=840, price=840, is_on_sale=False).save()
+ProductItem(id=34, title='SuitYou T-Shirt Male (XL) (White)', image='media/model_img/cloths/suityou tshirt white male.png', og_price=840, price=840, is_on_sale=False).save()
+ProductItem(id=35, title='Uniqueme Hoodie Unisex (S) (Green)', image='media/model_img/cloths/uniqueme hoodie green uni.png', og_price=570, price=570, is_on_sale=False).save()
+ProductItem(id=36, title='Uniqueme Hoodie Unisex (M) (Green)', image='media/model_img/cloths/uniqueme hoodie green uni.png', og_price=570, price=570, is_on_sale=False).save()
+ProductItem(id=37, title='Uniqueme Hoodie Unisex (L) (Green)', image='media/model_img/cloths/uniqueme hoodie green uni.png', og_price=570, price=570, is_on_sale=False).save()
+ProductItem(id=38, title='Uniqueme Hoodie Unisex (XL) (Green)', image='media/model_img/cloths/uniqueme hoodie green uni.png', og_price=570, price=570, is_on_sale=False).save()
+ProductItem(id=39, title='Uniqueme Hoodie Unisex (S) (White)', image='media/model_img/cloths/uniqueme hoodie white uni.png', og_price=570, price=570, is_on_sale=False).save()
+ProductItem(id=40, title='Uniqueme Hoodie Unisex (M) (White)', image='media/model_img/cloths/uniqueme hoodie white uni.png', og_price=570, price=570, is_on_sale=False).save()
+ProductItem(id=41, title='Uniqueme Hoodie Unisex (L) (White)', image='media/model_img/cloths/uniqueme hoodie white uni.png', og_price=570, price=570, is_on_sale=False).save()
+ProductItem(id=42, title='Uniqueme Hoodie Unisex (XL) (White)', image='media/model_img/cloths/uniqueme hoodie white uni.png', og_price=570, price=570, is_on_sale=False).save()
+ProductItem(id=43, title='Uniqueme Sleeveless Female (S) (Black)', image='media/model_img/cloths/uniqueme sleeveless black female.png', og_price=690, price=690, is_on_sale=False).save()
+ProductItem(id=44, title='Uniqueme Sleeveless Female (M) (Black)', image='media/model_img/cloths/uniqueme sleeveless black female.png', og_price=690, price=690, is_on_sale=False).save()
+ProductItem(id=45, title='Uniqueme Sleeveless Female (L) (Black)', image='media/model_img/cloths/uniqueme sleeveless black female.png', og_price=690, price=690, is_on_sale=False).save()
+ProductItem(id=46, title='Uniqueme Sleeveless Female (XL) (Black)', image='media/model_img/cloths/uniqueme sleeveless black female.png', og_price=690, price=690, is_on_sale=False).save()
+ProductItem(id=47, title='Uniqueme Sleeveless Female (S) (Grey)', image='media/model_img/cloths/uniqueme sleeveless grey female.png', og_price=690, price=690, is_on_sale=False).save()
+ProductItem(id=48, title='Uniqueme Sleeveless Female (M) (Grey)', image='media/model_img/cloths/uniqueme sleeveless grey female.png', og_price=690, price=690, is_on_sale=False).save()
+ProductItem(id=49, title='Uniqueme Sleeveless Female (L) (Grey)', image='media/model_img/cloths/uniqueme sleeveless grey female.png', og_price=690, price=690, is_on_sale=False).save()
+ProductItem(id=50, title='Uniqueme Sleeveless Female (XL) (Grey)', image='media/model_img/cloths/uniqueme sleeveless grey female.png', og_price=690, price=690, is_on_sale=False).save()
+ProductItem(id=51, title='Uniqueme Sweatshirt Female (S) (Tiedye)', image='media/model_img/cloths/uniqueme sweatshirt tiedye female.png', og_price=1200, price=599, is_on_sale=True).save()
+ProductItem(id=52, title='Uniqueme Sweatshirt Female (M) (Tiedye)', image='media/model_img/cloths/uniqueme sweatshirt tiedye female.png', og_price=1200, price=599, is_on_sale=True).save()
+ProductItem(id=53, title='Uniqueme Sweatshirt Female (L) (Tiedye)', image='media/model_img/cloths/uniqueme sweatshirt tiedye female.png', og_price=1200, price=599, is_on_sale=True).save()
+ProductItem(id=54, title='Uniqueme T-Shirt Unisex (S) (BLack)', image='media/model_img/cloths/uniqueme tshirt black uni.png', og_price=670, price=490, is_on_sale=True).save()
+ProductItem(id=55, title='Uniqueme T-Shirt Unisex (M) (Black)', image='media/model_img/cloths/uniqueme tshirt black uni.png', og_price=670, price=490, is_on_sale=True).save()
+ProductItem(id=56, title='Uniqueme T-Shirt Unisex (L) (Black)', image='media/model_img/cloths/uniqueme tshirt black uni.png', og_price=670, price=490, is_on_sale=True).save()
+ProductItem(id=57, title='Uniqueme T-Shirt Unisex (XL) (Black)', image='media/model_img/cloths/uniqueme tshirt black uni.png', og_price=670, price=490, is_on_sale=True).save()
+ProductItem(id=58, title='Uniqueme T-Shirt Unisex (S) (Orange)', image='media/model_img/cloths/uniqueme tshirt orange uni.png', og_price=670, price=490, is_on_sale=True).save()
+ProductItem(id=59, title='Uniqueme T-Shirt Unisex (M) (Orange)', image='media/model_img/cloths/uniqueme tshirt orange uni.png', og_price=670, price=490, is_on_sale=True).save()
+ProductItem(id=60, title='Uniqueme T-Shirt Unisex (L) (Orange)', image='media/model_img/cloths/uniqueme tshirt orange uni.png', og_price=670, price=490, is_on_sale=True).save()
+ProductItem(id=61, title='Uniqueme T-Shirt Unisex (XL) (Orange)', image='media/model_img/cloths/uniqueme tshirt orange uni.png', og_price=670, price=490, is_on_sale=True).save()
+ProductItem(id=62, title='Desktop PC KG Designer k0 including monitor (Black)', image='media/model_img/computers/kg designer k0 desktop with monitor black.png', og_price=15800, price=15800, is_on_sale=False).save()
+ProductItem(id=63, title='Desktop PC KG Designer k5 including monitor (Black)', image='media/model_img/computers/kg designer k0 desktop with monitor black.png', og_price=20800, price=20800, is_on_sale=False).save()
+ProductItem(id=64, title='14 inches Laptop KG Designer kg014 (Black)', image='media/model_img/computers/kg designer kg0 laptop14 black.png', og_price=30500, price=25900, is_on_sale=True).save()
+ProductItem(id=65, title='14 inches Laptop KG Designer kg514 (Black)', image='media/model_img/computers/kg designer kg0 laptop14 black.png', og_price=32500, price=29900, is_on_sale=True).save()
+ProductItem(id=66, title='14 inches Laptop KG Designer kg714 (Black)', image='media/model_img/computers/kg designer kg0 laptop14 black.png', og_price=34500, price=31900, is_on_sale=True).save()
+ProductItem(id=67, title='15.6 inches Laptop KG Designer kg015 (Black)', image='media/model_img/computers/kg designer kg0 laptop156 black.png', og_price=28500, price=23900, is_on_sale=True).save()
+ProductItem(id=68, title='15.6 inches Laptop KG Designer kg515 (Black)', image='media/model_img/computers/kg designer kg0 laptop156 black.png', og_price=30500, price=27900, is_on_sale=True).save()
+ProductItem(id=69, title='15.6 inches Laptop KG Designer kg715 (Black)', image='media/model_img/computers/kg designer kg0 laptop156 black.png', og_price=32500, price=29900, is_on_sale=True).save()
+ProductItem(id=70, title='15.6 inches Laptop KG Designer kg015 (White)', image='media/model_img/computers/kg designer kg0 laptop156 white.png', og_price=28500, price=23900, is_on_sale=True).save()
+ProductItem(id=71, title='15.6 inches Laptop KG Designer kg515 (White)', image='media/model_img/computers/kg designer kg0 laptop156 white.png', og_price=30500, price=27900, is_on_sale=True).save()
+ProductItem(id=72, title='15.6 inches Laptop KG Designer kg715 (White)', image='media/model_img/computers/kg designer kg0 laptop156 white.png', og_price=32500, price=29900, is_on_sale=True).save()
+ProductItem(id=73, title='Desktop PC Orange Ranger G5 (Black)', image='media/model_img/computers/orange ranger g5 desktop black.png', og_price=44000, price=44000, is_on_sale=False).save()
+ProductItem(id=74, title='Desktop PC Orange Ranger G7 (Black)', image='media/model_img/computers/orange ranger g5 desktop black.png', og_price=45900, price=45900, is_on_sale=False).save()
+ProductItem(id=75, title='Desktop PC Orange Ranger G9 (Black)', image='media/model_img/computers/orange ranger g5 desktop black.png', og_price=47900, price=47900, is_on_sale=False).save()
+ProductItem(id=76, title='Desktop PC Orange Ranger G5 (White)', image='media/model_img/computers/orange ranger g5 desktop white.png', og_price=44000, price=44000, is_on_sale=False).save()
+ProductItem(id=77, title='Desktop PC Orange Ranger G7 (White)', image='media/model_img/computers/orange ranger g5 desktop white.png', og_price=45900, price=45900, is_on_sale=False).save()
+ProductItem(id=78, title='Desktop PC Orange Ranger G9 (White)', image='media/model_img/computers/orange ranger g5 desktop white.png', og_price=47900, price=47900, is_on_sale=False).save()
+ProductItem(id=79, title='14 inches Laptop Orange Sour o7 (White)', image='media/model_img/computers/orange sour o7 laptop14 white.png', og_price=45800, price=44900, is_on_sale=True).save()
+ProductItem(id=80, title='14 inches Laptop Orange Sour o9 (White)', image='media/model_img/computers/orange sour o7 laptop14 white.png', og_price=47800, price=46900, is_on_sale=True).save()
+ProductItem(id=81, title='15.6 inches Laptop Orange Sour o7 (Black)', image='media/model_img/computers/orange sour o7 laptop156 black.png', og_price=44800, price=43900, is_on_sale=True).save()
+ProductItem(id=82, title='15.6 inches Laptop Orange Sour o9 (Black)', image='media/model_img/computers/orange sour o7 laptop156 black.png', og_price=46800, price=45900, is_on_sale=True).save()
+ProductItem(id=83, title='15.6 inches Laptop Orange Sour o7 (White)', image='media/model_img/computers/orange sour o7 laptop156 white.png', og_price=44800, price=43900, is_on_sale=True).save()
+ProductItem(id=84, title='15.6 inches Laptop Orange Sour o9 (White)', image='media/model_img/computers/orange sour o7 laptop156 white.png', og_price=46800, price=45900, is_on_sale=True).save()
+ProductItem(id=85, title='16 inches Laptop Orange Sweet o9 (White)', image='media/model_img/computers/orange sweet o9 laptop16 white.png', og_price=55000, price=53900, is_on_sale=True).save()
+ProductItem(id=86, title='15.6 inches Laptop Orange Sweet o9 (White)', image='media/model_img/computers/orange sweet o9 laptop156 white.png', og_price=52000, price=49900, is_on_sale=True).save()
+ProductItem(id=87, title='Desktop PC Zeus Lighting ZL03 (Black)', image='media/model_img/computers/zeus lighting zl desktop black.png', og_price=22500, price=22500, is_on_sale=False).save()
+ProductItem(id=88, title='Desktop PC Zeus Lighting ZL05 (Black)', image='media/model_img/computers/zeus lighting zl desktop black.png', og_price=23700, price=23700, is_on_sale=False).save()
+ProductItem(id=89, title='Desktop PC Zeus Lighting ZL03 (Blue)', image='media/model_img/computers/zeus lighting zl desktop blue.png', og_price=22500, price=22500, is_on_sale=False).save()
+ProductItem(id=90, title='Desktop PC Zeus Lighting ZL05 (Blue)', image='media/model_img/computers/zeus lighting zl desktop blue.png', og_price=23700, price=23700, is_on_sale=False).save()
+ProductItem(id=91, title='16 inches Laptop Zeus Ocean z7 (White)', image='media/model_img/computers/zeus ocean z7 laptop16 white.png', og_price=36000, price=36000, is_on_sale=False).save()
+ProductItem(id=92, title='15.6 inches Laptop Zeus Ocean z7 (White)', image='media/model_img/computers/zeus ocean z7 laptop156 white.png', og_price=33000, price=33000, is_on_sale=False).save()
+ProductItem(id=93, title='Desktop PC Zeus Thunder ZT (White)', image='media/model_img/computers/zeus thunder zt desktop with monitor white.png', og_price=89800, price=79000, is_on_sale=False).save()
+ProductItem(id=94, title='Earphone Birdblue Aux3.5 2M including mic (Black)', image='media/model_img/headphones/birdblue headphone aux35 in ear black with mic.png', og_price=200, price=149, is_on_sale=True).save()
+ProductItem(id=95, title='Headphone Birdblue Aux3.5 3M (Black)', image='media/model_img/headphones/birdblue headphone aux35 on ear black.png', og_price=560, price=560, is_on_sale=False).save()
+ProductItem(id=96, title='Headset Birdblue Aux3.5 3M (White)', image='media/model_img/headphones/birdblue headphone aux35 over ear white with mic.png', og_price=2100, price=1890, is_on_sale=True).save()
+ProductItem(id=97, title='Bluetooth Headphone Birdblue 3M (Black)', image='media/model_img/headphones/birdblue headphone bluetooth on ear black.png', og_price=880, price=880, is_on_sale=False).save()
+ProductItem(id=98, title='Bluetooth Headphone Birdblue 3M (Blue)', image='media/model_img/headphones/birdblue headphone bluetooth on ear blue.png', og_price=880, price=880, is_on_sale=False).save()
+ProductItem(id=99, title='Earphone Birdblue USB Type-c 2M including mic (Blue)', image='media/model_img/headphones/birdblue headphone typec in ear blue with mic.png', og_price=200, price=149, is_on_sale=True).save()
+ProductItem(id=100, title='Headset Birdblue USB3.0 3M (Blue)', image='media/model_img/headphones/birdblue headphone usb3 over ear blue with mic.png', og_price=2500, price=2190, is_on_sale=True).save()
+ProductItem(id=101, title='Headphone Birdblue USB Type-c 3M', image='media/model_img/headphones/birdblue headphone usbc on ear black.png', og_price=560, price=560, is_on_sale=False).save()
+ProductItem(id=102, title='Bluetooth Headphone Heartbeat 3.5M (Pink)', image='media/model_img/headphones/heartbeat headphone bluetooth on ear pink.png', og_price=1200, price=990, is_on_sale=True).save()
+ProductItem(id=103, title='Bluetooth Headphone Heartbeat 3.5M (Red)', image='media/model_img/headphones/heartbeat headphone bluetooth on ear red.png', og_price=1200, price=990, is_on_sale=True).save()
+ProductItem(id=104, title='Bluetooth Headphone Heartbeat 3.5M (White)', image='media/model_img/headphones/heartbeat headphone bluetooth on ear white.png', og_price=1200, price=990, is_on_sale=True).save()
+ProductItem(id=105, title='DoLL X10 (3Gb + 64Gb) Black', image='media/model_img/smartphones/doll x10 black.png', og_price=7100, price=6700, is_on_sale=True).save()
+ProductItem(id=106, title='DoLL X10 (3Gb + 64Gb) White', image='media/model_img/smartphones/doll x10 white.png', og_price=7100, price=6700, is_on_sale=True).save()
+ProductItem(id=107, title='DoLL X11 (4Gb + 64Gb) Black', image='media/model_img/smartphones/doll x11 black.png', og_price=8800, price=7900, is_on_sale=True).save()
+ProductItem(id=108, title='DoLL X11 (4Gb + 64Gb) White', image='media/model_img/smartphones/doll x11 white.png', og_price=8800, price=7900, is_on_sale=True).save()
+ProductItem(id=109, title='Orange Pad OR19 (6Gb + 32Gb)', image='media/model_img/smartphones/orange or19 tablet orange.png', og_price=12800, price=11900, is_on_sale=True).save()
+ProductItem(id=110, title='Orange OR20 (8Gb + 128Gb)', image='media/model_img/smartphones/orange or20 orange.png', og_price=17900, price=17900, is_on_sale=False).save()
+ProductItem(id=111, title='Ros S16 (4Gb + 128Gb) Red', image='media/model_img/smartphones/rose s16 red.png', og_price=10900, price=10900, is_on_sale=False).save()
+ProductItem(id=112, title='Ros S16 (4Gb + 128Gb) White', image='media/model_img/smartphones/rose s16 white.png', og_price=10900, price=10900, is_on_sale=False).save()
 ```
