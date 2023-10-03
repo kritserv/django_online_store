@@ -55,6 +55,14 @@ html {
  div a p {
      color: black;
 }
+h5.mb-0 {
+  font-size: 0.9vw;
+  color: #000000
+}
+
+div.d-flex.justify-content-between.mb-2 {
+  font-size: 0.85vw;
+}
  #prod-img {
      width: 37vw;
      min-width: 5rem;

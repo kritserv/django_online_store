@@ -97,20 +97,17 @@
                            </svg>
                            Account
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                            {% if request.user.is_authenticated %}
                            <li><a class="dropdown-item" href="/accounts/logout">Log out</a></li>
-                           <li>
-                              <hr class="dropdown-divider">
-                           </li>
-                           <li><a class="dropdown-item" href="/admin">Admin</a></li>
                            {% else %}
                            <li><a class="dropdown-item" href="/accounts/login">Login</a></li>
                            <li><a class="dropdown-item" href="/accounts/signup">Signup</a></li>
+                           <li><a class="dropdown-item" href="/loginguest/">Guest Login (For test)</a></li>
                            <li>
                               <hr class="dropdown-divider">
                            </li>
-                           <li><a class="dropdown-item" href="/admin">Admin</a></li>
+                           <li><a class="dropdown-item" href="/admin">Admin Login</a></li>
                            {% endif %}
                         </ul>
                      </li>

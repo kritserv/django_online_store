@@ -6,11 +6,11 @@
 <script>
    AOS.init();
 </script>
-<section style="background-color: #eee; width=80%;">
+<section style="background-color: #eee;">
    <div class="container py-6" id="prod-container">
       <div class="row">
          {% for prod in product_data %}
-         <div class="col-md-6 col-lg-3 mb-4 mb-lg-6">
+         <div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-6">
             <div data-aos="flip-down">
                <a href="{{ prod.link }}">
                   <div class="card" id="prod-card">
