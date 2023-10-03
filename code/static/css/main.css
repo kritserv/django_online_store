@@ -15,37 +15,6 @@ a:link{
   flex-direction: column;
 }
 
-.align-items-center {
-      align-items: center;
-}
-
-#ddice-home {
-  font-family: b;
-}
-
-#subnav {
-  margin-top: 4.4rem;
-  margin-left: 29vw;
-  margin-right: 29vw;
-  min-width: 35vw;
-}
-
-#subnav ul{
-  width: 100%;
-}
-
-#subnav ul li p {
-  color: wheat;
-  margin-left: 6vw;
-  margin-right: 6vw;
-}
-
-#subnav li p a {
-  color: black;
-  background-color: lightblue;
-  border-radius: 5px;
-}
-
 #filter-btn {
   margin-left: 3rem;
   margin-top: 4rem;
@@ -79,10 +48,6 @@ h5.mb-0 {
   color: red;
 }
 
-li a svg {
-  font-size: 26px;
-}
-
 div.d-flex.align-items-center {
   text-align: center;  
 }
@@ -95,47 +60,15 @@ li a p {
 
 input.form-control {
   align-self: center;
-  width: 12em;
+  width: 25em;
   min-width: 120px;
-  max-width: 280px;
+  max-width: 500px;
   margin-top: 8px;
   margin-bottom: 7px;
 }
 
-button.btn.btn-outline-light {
-  background-color: lightblue;
-  color: black;  
-}
-
-button.btn.btn-outline-light:hover {
-  background-color: orange;
-}
-
-a.nav-link {
-  background-color: lightblue;
-  border-radius: 25px;
-  min-width: 90px;
-  height: 57px;
-  margin-right: 0.6rem;
-  margin-left: 0.6rem;
-  margin-top: 3px;
-  margin-bottom: 3px;
-
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 100%;
-}
-
 div a p {
   color: black;
-}
-
-a.nav-link:hover {
-  background-color: orange;
-  scale: 1.1;
-  margin-right: 1.1rem;
-  margin-left: 1.1rem;
-  transition: .4s;
 }
 
 #prod-img {
