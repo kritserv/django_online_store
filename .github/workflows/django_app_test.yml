@@ -8,11 +8,18 @@ on:
 jobs:
   build-and-test:
     if: contains(github.event.commit.message, '(runtest)')
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+
+      - name: Install Docker and Docker Compose
+        run: |
+          apk add --no-cache docker docker-compose
+          service docker start
+          docker-compose --version
+        if: success()
 
       - name: Build and Test
         working-directory: ./code
