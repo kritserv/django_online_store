@@ -19,7 +19,6 @@ SHOW GRANTS FOR 'root';
 #### command to fix Nginx Bad Gateway:
 
 ```
-sudo netstat -nlp | grep 3306
 sudo netstat -nlp | grep 8000
 ```
 
