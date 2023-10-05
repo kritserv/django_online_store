@@ -12,21 +12,34 @@ html {
      flex-direction: column;
 }
  #filter-btn {
-     margin-left: 3rem;
-     margin-top: 4rem;
+     margin-left: 0.9rem;
+     margin-top: 3rem;
+}
+.add-to-cart {
+  margin: 5px;
+}
+
+img.img-fluid.rounded-3 {
+  max-width: 90px;
 }
  #prod-container {
-     margin-top: 4rem;
+     margin-top: 3rem;
 }
  #prod-card {
-     width:100%;
+     width:98%;
 }
  #prod-card:hover {
      scale: 1.07;
      transition: .2s;
 }
+div.offcanvas.offcanvas-start.show {
+  min-width: 300px;
+  width: 27vw;
+}
  h5.mb-0 {
      font-weight: bold;
+     font-size: 100%;
+     color: #000000
 }
  #sale-tag {
      width: 55px;
@@ -55,14 +68,11 @@ html {
  div a p {
      color: black;
 }
-h5.mb-0 {
-  font-size: 0.9vw;
-  color: #000000
-}
 
 div.d-flex.justify-content-between.mb-2 {
-  font-size: 0.85vw;
+  width: 80%;
 }
+
  #prod-img {
      width: 37vw;
      min-width: 5rem;
