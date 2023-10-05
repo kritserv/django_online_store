@@ -24,4 +24,3 @@ jobs:
           docker-compose run app bash -c "python manage.py test main.tests.URLTests.homepage"
 
           docker-compose down
-    fi
