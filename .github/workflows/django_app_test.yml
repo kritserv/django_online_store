@@ -7,6 +7,7 @@ on:
 
 jobs:
   build-and-test:
+    if: "!contains(github.event.commit.message, '(run test)')"
     runs-on: ubuntu-latest
 
     steps:

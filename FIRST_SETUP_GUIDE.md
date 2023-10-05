@@ -12,6 +12,8 @@ docker-compose up -d --build
 
 Stop the container; it will keep restarting because the database doesn't exist yet. Docker will not run migrations before Django runs successfully for the first time.
 
+Insert hashtag to ignore following lines in the ddice_online_shop/urls.py:
+
 ```
 ...
 20    #from main.formview.computer_formview import ComputerFormView
