@@ -41,3 +41,7 @@ Also follow [First setup guide](FIRST_SETUP_GUIDE.md#first-time-setup-guide).
 
 - [grant privileges to the root in mysql](FIRST_SETUP_GUIDE.md#command-to-grant-privileges-to-the-root-user-in-mysql-or-mariadb)
 - [fix Nginx Bad Gateway](FIRST_SETUP_GUIDE.md#command-to-fix-nginx-bad-gateway)
+
+## License:
+
+[GNU General Public License v3.0](LICENSE)
