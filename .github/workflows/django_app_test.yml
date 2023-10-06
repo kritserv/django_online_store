@@ -7,7 +7,6 @@ on:
 
 jobs:
   build-and-test:
-    if: contains(github.event.commit.message, '(runtest)')
     runs-on: alpine-latest
 
     steps:
@@ -19,7 +18,6 @@ jobs:
           apk add --no-cache docker docker-compose
           service docker start
           docker-compose --version
-        if: success()
 
       - name: Build and Test
         working-directory: ./code
