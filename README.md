@@ -2,21 +2,15 @@
 
 preview: [ddice.pythonanywhere.com](https://ddice.pythonanywhere.com/)
 
-<center>
-
-![banner](banner.png)
-
-</center>
-
 <br>
 
-highlight feature: 
+some feature: 
 
 - Filter product form
 - Add to Cart, Remove from Cart
 - Product summary
 - Checkout form
-- Guest Account
+- Login with Guest Account
 
 <br>
 
