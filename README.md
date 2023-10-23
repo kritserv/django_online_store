@@ -31,7 +31,7 @@ git clone https://github.com/kritserv/django_online_store.git
 Recommends **Python3.9**
 
 ```
-cd django_online_store && cd app && pip install -r requirements.txt
+cd app && pip install -r requirements.txt
 ```
 
 > Run Server
@@ -39,8 +39,6 @@ cd django_online_store && cd app && pip install -r requirements.txt
 ```
 python3 manage.py runserver
 ```
-
-Open <a href="127.0.0.1:8000">127.0.0.1:8000/</a>
 
 ```
 127.0.0.1:8000/
