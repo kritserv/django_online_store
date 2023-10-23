@@ -19,6 +19,6 @@ jobs:
           docker-compose up -d
           sleep 10
 
-          docker-compose run django_online_store_web_1 bash -c "python manage.py test main.tests.URLTests.homepage"
+          docker-compose run django_online_store-web bash -c "python manage.py test main.tests.URLTests.homepage"
 
           docker-compose down
