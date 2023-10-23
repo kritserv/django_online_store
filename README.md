@@ -1,4 +1,4 @@
-## Online Ecommerce Shop example using Docker Django Mysql
+## Online Ecommerce Shop example using Docker Django SQLite
 
 preview: [ddice.pythonanywhere.com](https://ddice.pythonanywhere.com/)
 
@@ -19,22 +19,40 @@ some feature:
 clone this repository:
 
 ```
-git clone https://github.com/kritserv/online_shop_docker_django_mysql.git
+git clone https://github.com/kritserv/django_online_store.git
 ```
 
-Setup container using Docker compose.
+- option 1: <a href="#virtualenv">Virtual Environment</a>
+- option 2: <a href="#dockerengine">Docker Engine</a>
 
-Also follow [First setup guide](FIRST_SETUP_GUIDE.md#first-time-setup-guide).
 
-> **Don't skip** this guide, Django Will **Not** Run Properly If Skipped!
+### virtualenv
 
-<br>
-<br>
+Recommends **Python3.9**
 
-### Other useful command:
+```
+cd django_online_store && cd app && pip install -r requirements.txt
+```
 
-- [grant privileges to the root in mysql](FIRST_SETUP_GUIDE.md#command-to-grant-privileges-to-the-root-user-in-mysql-or-mariadb)
-- [fix Nginx Bad Gateway](FIRST_SETUP_GUIDE.md#command-to-fix-nginx-bad-gateway)
+> Run Server
+
+```
+python3 manage.py runserver
+```
+
+Open <a href="https://127.0.0.1:8000">127.0.0.1:8000/</a>
+
+```
+127.0.0.1:8000/
+```
+
+Runserver
+
+### dockerengine
+
+```
+docker-compose up -d --build
+```
 
 ## License:
 
