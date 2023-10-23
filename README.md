@@ -40,7 +40,7 @@ cd django_online_store && cd app && pip install -r requirements.txt
 python3 manage.py runserver
 ```
 
-Open <a href="https://127.0.0.1:8000">127.0.0.1:8000/</a>
+Open <a href="127.0.0.1:8000">127.0.0.1:8000/</a>
 
 ```
 127.0.0.1:8000/
