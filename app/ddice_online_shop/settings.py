@@ -97,12 +97,8 @@ WSGI_APPLICATION = 'ddice_online_shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ddice_online_shop_database',
-        'USER': 'root',
-        'PASSWORD': 'ddice',
-        'HOST': 'db',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

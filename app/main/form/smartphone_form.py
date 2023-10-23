@@ -28,16 +28,18 @@ class SmartphoneForm(forms.Form):
     ]
 
     FORM = []
+    try:
+        for q in QUERY_FIELDS:
+            CHOICES = []
+            for x in Smartphone.objects.values(q).distinct().order_by(q):
+                CHOICES.append((x[q], x[q]))
 
-    for q in QUERY_FIELDS:
-        CHOICES = []
-        for x in Smartphone.objects.values(q).distinct().order_by(q):
-            CHOICES.append((x[q], x[q]))
-
-        FORM.append(
-            forms.MultipleChoiceField(
-                widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False
+            FORM.append(
+                forms.MultipleChoiceField(
+                    widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False
+                )
             )
-        )
 
-    product_available, on_sale, tablet, flagship, color, processor, processor_brand, ram, storage_size, operating_system, front_camera, back_camera, sim = FORM
+        product_available, on_sale, tablet, flagship, color, processor, processor_brand, ram, storage_size, operating_system, front_camera, back_camera, sim = FORM
+    except:
+        None

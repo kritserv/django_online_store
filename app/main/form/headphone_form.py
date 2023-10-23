@@ -25,16 +25,18 @@ class HeadphoneForm(forms.Form):
     ]
 
     FORM = []
+    try:
+        for q in QUERY_FIELDS:
+            CHOICES = []
+            for x in Headphone.objects.values(q).distinct().order_by(q):
+                CHOICES.append((x[q], x[q]))
 
-    for q in QUERY_FIELDS:
-        CHOICES = []
-        for x in Headphone.objects.values(q).distinct().order_by(q):
-            CHOICES.append((x[q], x[q]))
-
-        FORM.append(
-            forms.MultipleChoiceField(
-                widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False
+            FORM.append(
+                forms.MultipleChoiceField(
+                    widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False
+                )
             )
-        )
 
-    product_available, on_sale, is_bluetooth, is_waterproof, has_noise_cancelling, has_microphone, color, headphone_type, port, frequency_response = FORM
+        product_available, on_sale, is_bluetooth, is_waterproof, has_noise_cancelling, has_microphone, color, headphone_type, port, frequency_response = FORM
+    except:
+        None

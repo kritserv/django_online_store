@@ -28,15 +28,18 @@ class ComputerForm(forms.Form):
 
     FORM = []
 
-    for q in QUERY_FIELDS:
-        CHOICES = []
-        for x in Computer.objects.values(q).distinct().order_by(q):
-            CHOICES.append((x[q], x[q]))
+    try:
+        for q in QUERY_FIELDS:
+            CHOICES = []
+            for x in Computer.objects.values(q).distinct().order_by(q):
+                CHOICES.append((x[q], x[q]))
 
-        FORM.append(
-            forms.MultipleChoiceField(
-                widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False
+            FORM.append(
+                forms.MultipleChoiceField(
+                    widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False
+                )
             )
-        )
 
-    product_available, on_sale, laptop, gaming, color, cpu, cpu_brand, ram, gpu, gpu_brand, storage_size, operating_system = FORM
+        product_available, on_sale, laptop, gaming, color, cpu, cpu_brand, ram, gpu, gpu_brand, storage_size, operating_system = FORM
+    except:
+        None

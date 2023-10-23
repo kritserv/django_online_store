@@ -21,16 +21,18 @@ class ClothForm(forms.Form):
     ]
 
     FORM = []
+    try:
+        for q in QUERY_FIELDS:
+            CHOICES = []
+            for x in Cloth.objects.values(q).distinct().order_by(q):
+                CHOICES.append((x[q], x[q]))
 
-    for q in QUERY_FIELDS:
-        CHOICES = []
-        for x in Cloth.objects.values(q).distinct().order_by(q):
-            CHOICES.append((x[q], x[q]))
-
-        FORM.append(
-            forms.MultipleChoiceField(
-                widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False
+            FORM.append(
+                forms.MultipleChoiceField(
+                    widget=forms.CheckboxSelectMultiple, choices=CHOICES, required=False
+                )
             )
-        )
 
-    product_available, on_sale, color, gender, cloth_type, size = FORM
+        product_available, on_sale, color, gender, cloth_type, size = FORM
+    except:
+        None
