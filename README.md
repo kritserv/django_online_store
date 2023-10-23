@@ -1,4 +1,4 @@
-## Online Ecommerce Shop example using Docker Django SQLite
+## Online Ecommerce Shop example using Django SQLite
 
 preview: [ddice.pythonanywhere.com](https://ddice.pythonanywhere.com/)
 
@@ -44,12 +44,14 @@ python3 manage.py runserver
 127.0.0.1:8000/
 ```
 
-Runserver
-
 ### dockerengine
 
 ```
 docker-compose up -d --build
+```
+
+```
+127.0.0.1:8000/
 ```
 
 ## License:
