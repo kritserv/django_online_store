@@ -23,7 +23,7 @@ git clone https://github.com/kritserv/django_online_store.git
 ```
 
 - option 1: <a href="#virtualenv">Virtual Environment</a>
-- option 2: <a href="#dockerengine">Docker Engine</a>
+- option 2: <a href="#dockerengine">Docker</a>
 
 
 ### virtualenv
@@ -32,6 +32,16 @@ Recommends **Python3.9**
 
 ```
 cd app && pip install -r requirements.txt
+```
+
+> **Migrate** and **Load** dump data
+
+```
+python3 manage.py migrate
+```
+
+```
+python3 manage.py loaddata dumped_data.json
 ```
 
 > Run Server
