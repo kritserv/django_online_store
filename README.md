@@ -1,9 +1,5 @@
 ## Online Ecommerce Shop example using Django SQLite
 
-preview: [ddice.pythonanywhere.com](https://ddice.pythonanywhere.com/)
-
-<br>
-
 some feature: 
 
 - Filter product form
@@ -28,7 +24,7 @@ git clone https://github.com/kritserv/django_online_store.git
 
 ### virtualenv
 
-Recommends **Python3.9**
+Recommends **Python3.9+**
 
 ```
 cd app && pip install -r requirements.txt
