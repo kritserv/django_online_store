@@ -1,7 +1,3 @@
-# from django.shortcuts import render
-
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from .models import Product, Cart, CheckoutOrder, OrderProduct, Category, Brand, UserReview
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
