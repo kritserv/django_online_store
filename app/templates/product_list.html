@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Django Ecommerce | {{ title }}{% endblock %}
+
+{% block content %}
+<div class="main">
+   <h1>{{ title }}</h1>
+   <p>{{ description }}</p>
+   {% if filter_option %}
+   <button onclick="showFilterFunction()">Show Filter</button>
+   <br/>
+   <br/>
+   <form id="filter_function" style="display: none;">
+      <input type="number" name="category" value="{{ category_id }}" hidden/>
+
+      {% for key, values in filter_option.items %}
+      <strong><label for="{{ key }}">{{ key }}</label></strong>
+         {% for value in values %}
+         <p>
+         <label><input type="checkbox" name="{{ key }}" value="{{ value }}"> {{ value }}</label>
+         </p>
+         {% endfor %}
+      {% endfor %}
+      <button type="submit">Filter</button>
+   </form>
+   {% endif %}
+   <ul>
+   {% for product in products %}
+      {% if product.available_quantity == 0 %}
+      {% else %}
+         <li>
+            <a href="/product_detail?product={{ product.id }}">
+               {% if product.image %}
+               <img src="{{ product.image.url }}" alt="{{ product.short_name }}"/>
+               {% else %}
+               <img src="{% static 'img/products/not_found.webp'%}" alt="{{ product.short_name }}"/>
+               {% endif %}
+               <p>
+               <strong>{{ product.short_name }}</strong>
+               {{ product.short_description }} (Avaiable: {{ product.available_quantity }})
+               {% if product.current_price < product.original_price %}
+                   <strong>$ {{ product.format_current_price }} ({{ product.discount_percentage }}% off)</strong>
+               {% else %}
+                   <strong>$ {{ product.format_current_price }}</strong>
+               {% endif %}
+            </a>
+            <span class="divider"></span>
+         </li>
+      {% endif %}
+   {% endfor %}
+   </ul>
+   
+   <!-- Pagination -->
+   <div class="pagination">
+      <span class="step-links">
+          {% if products.has_previous %}
+              <a href="?{% if category_id %}category={{ category_id }}&{% endif %}{% if brand_id %}brand={{ brand_id }}&{% endif %}page=1">&laquo; first</a>
+              <a href="?{% if category_id %}category={{ category_id }}&{% endif %}{% if brand_id %}brand={{ brand_id }}&{% endif %}page={{ products.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ products.number }} of {{ products.paginator.num_pages }}
+          </span>
+
+          {% if products.has_next %}
+              <a href="?{% if category_id %}category={{ category_id }}&{% endif %}{% if brand_id %}brand={{ brand_id }}&{% endif %}page={{ products.next_page_number }}">next</a>
+              <a href="?{% if category_id %}category={{ category_id }}&{% endif %}{% if brand_id %}brand={{ brand_id }}&{% endif %}page={{ products.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+   </div>
+</div>
+<script type="text/javascript">
+   function showFilterFunction() {
+  var x = document.getElementById("filter_function");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+} 
+</script>
+{% endblock %}

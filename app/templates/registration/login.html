@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Django Ecommerce | Login{% endblock %}
+
+{% block content %}
+<style type="text/css">
+   #id_username, #id_password {
+      width: 50vw;
+      margin: 7px;
+      border: 1px 0 0 0 solid black;
+   }
+</style>
+<div class="main">
+   <h1>Login</h1>
+   <form method="post" class="form-group">
+      {% csrf_token %}
+      <center>
+         {{ form }}
+      </center>
+      <button type="submit">Login</button>
+      <br/>
+   </form>
+      or register <a href="/register_account">Create new account</a>
+      <br/>
+      or <a href="/login_guest">Login as guest</a>
+</div>
+{% endblock %}

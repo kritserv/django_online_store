@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Django Ecommerce | Login{% endblock %}
+
+{% block content %}
+<style type="text/css">
+   #id_username, #id_password1, #id_password2 {
+      width: 50vw;
+      margin: 7px;
+      border: 1px 0 0 0 solid black;
+   }
+</style>
+<div class="main">
+   <h1>Register</h1>
+   <form action="{% url 'register_account' %}" method="post" class="form-group">
+      {% csrf_token %}
+         {{ form }}
+      <button type="submit">Submit</button>
+      <br/>
+   </form>
+</div>
+{% endblock %}

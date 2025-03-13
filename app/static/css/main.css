@@ -1,124 +1,86 @@
-html {
-     scroll-behavior: smooth;
-     overflow-x: hidden;
+* {
+  box-sizing: border-box;
 }
- a:link{
-     text-decoration: none!important;
+
+body {
+  margin: 0px;
+  font-family: 'segoe ui';
 }
- .d-flex {
-     display: flex;
+
+.main {
+	margin: 4vw;
+  min-height: 80vh;
 }
- .flex-column {
-     flex-direction: column;
-}
- #filter-btn {
-     margin-left: 0.9rem;
-     margin-top: 3rem;
-}
-.add-to-cart {
+
+.scale_to_fit {
+  max-width: 80%;
   margin: 5px;
 }
 
-img.img-fluid.rounded-3 {
-  max-width: 90px;
-}
- #prod-container {
-     margin-top: 3rem;
-}
- #prod-card {
-     width:98%;
-}
- #prod-card:hover {
-     scale: 1.07;
-     transition: .2s;
-}
-div.offcanvas.offcanvas-start.show {
-  min-width: 300px;
-  width: 27vw;
-}
- h5.mb-0 {
-     font-weight: bold;
-     font-size: 100%;
-     color: #000000
-}
- #sale-tag {
-     width: 55px;
-     height: 35px;
-     font-weight: bold;
-}
- #recommend-tag {
-     color: red;
-}
- div.d-flex.align-items-center {
-     text-align: center;
-}
- li a p {
-     text-align: center;
-     margin-right: 2px;
-     margin-left: 2px;
-}
- input.form-control {
-     align-self: center;
-     width: 25em;
-     min-width: 120px;
-     max-width: 500px;
-     margin-top: 8px;
-     margin-bottom: 7px;
-}
- div a p {
-     color: black;
+a {
+  text-decoration: none;
 }
 
-div.d-flex.justify-content-between.mb-2 {
-  width: 80%;
+li {
+  list-style-type: none;
 }
 
- #prod-img {
-     width: 37vw;
-     min-width: 5rem;
+.main > ul > li > a > img:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: .2s;
 }
- #thumb {
-     width: 10vw;
-     margin-left: 2rem;
+
+.main > ul > li > a > img {
+  transition: .2s;
 }
- #prod-detail-page {
-     margin-left: 2rem;
-     margin-top: 6rem;
-     margin-right: 3vw;
+
+.divider{
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: #48484830;
+    margin: 20px 0;
 }
- #star-num {
-     color:black;
-     font-size: 1.4rem;
+
+button:hover {
+  cursor: pointer;
 }
- #detail-table {
-     margin-bottom: 16rem;
+
+footer {
+  height: 100px;
+  background-color: #2A597C;
 }
- @media (min-width: 1025px) {
-     .h-custom {
-         height: 100vh !important;
-    }
+
+footer > center > a {
+  color: #fff;
 }
- .card-registration .select-input.form-control[readonly]:not([disabled]) {
-     font-size: 1rem;
-     line-height: 2.15;
-     padding-left: .75em;
-     padding-right: .75em;
+
+.pagination {
+    margin: 20px 0;
+    text-align: center;
 }
- .card-registration .select-arrow {
-     top: 13px;
+
+.pagination .step-links {
+    display: inline-block;
 }
- .bg-grey {
-     background-color: #eae8e8;
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    margin: 0 4px;
 }
- @media (min-width: 992px) {
-     .card-registration-2 .bg-grey {
-         border-top-right-radius: 16px;
-         border-bottom-right-radius: 16px;
-    }
+
+.pagination a:hover {
+    background-color: #f1f1f1;
 }
- @media (max-width: 991px) {
-     .card-registration-2 .bg-grey {
-         border-bottom-left-radius: 16px;
-         border-bottom-right-radius: 16px;
-    }
-}
+
+.pagination .current {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #2A597C;
+    color: white;
+    border: 1px solid #2A597C;
+    margin: 0 4px;

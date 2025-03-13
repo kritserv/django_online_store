@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="{% static 'favicon.webp' %}" type="image/icon type">
+  <title>Accept a payment</title>
+  <link rel="stylesheet" type='text/css' href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" type='text/css' href="{% static 'css/nav.css' %}">
+  <link rel="stylesheet" type='text/css' href="{% static 'css/carousel.css' %}">
+  <link rel="stylesheet" type='text/css' href="{% static 'css/product_detail.css' %}">
+</head>
+  <body>
+    <style type="text/css">
+   input {
+      width: 40vw;
+      margin: 7px;
+   }
+</style>
+    <!-- Display a payment form -->
+    <div class="main">
+      <p>Continue <a href="/">shopping</a></p>
+      <form action="{% url 'return_checkout' %}" method="POST">
+        {% csrf_token %}
+        <label>Shipping Address</label>
+        <input type="text" name="shipping_address"/>
+        <br/>
+        <label>Billing Address</label>
+        <input type="text" name="billing_address"/>
+        <br/>
+        <p>Stripe will insert payment here, but this website doesn't have stripe setup yet.</p>
+        <br/>
+        <label>Name</label>
+        <input type="text" name="name"/>
+        <br/>
+        <label>Month Year</label>
+        <input type="text" name="month_year"/>
+        <br/>
+        <label>Credit card</label>
+        <input type="text" name="payment"/>
+        <br/>
+        <button type="submit">Confirm</button>
+      </form>
+    </div>
+      <div id="checkout">
+        <!-- Checkout will insert the payment form here -->
+      </div>
+  </body>
+</html>

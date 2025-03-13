@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Django Ecommerce{% endblock %}
+
+{% block content %}
+<center>
+<section class="carousel scale_to_fit">
+   <div class="carousel__wrapper">
+      <div class="carousel__slide">
+         <img class="carousel__image" src="{% static 'img/home.webp' %}" alt="Wallpaper"/>
+      </div>
+      <div class="carousel__slide">
+         <img class="carousel__image" src="{% static 'img/home_2.webp' %}" alt="Wallpaper"/>
+      </div>
+   </div>
+</section>
+<img class="scale_to_fit" src="{% static 'img/home_3.webp' %}" alt="Wallpaper"/>
+<img class="scale_to_fit" src="{% static 'img/home_4.webp' %}" alt="Wallpaper"/>
+</center>
+<div class="main">
+   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+   <br/>
+   <h1>CATEGORIES</h1>
+   <ul>
+   {% for category in categories %}
+   <li style="display: inline-block;">
+      <a href="/product_list?category={{ category.id }}">
+         <img src="{{ category.image.url }}" alt="{{ category.name }}"/>
+         <p>{{ category.name }}</p>
+      </a>
+   </li>
+   {% endfor %}
+   </ul>
+      <span class="divider"></span>
+   <br/>
+   <h1>BRANDS</h1>
+   <ul>
+   {% for brand in brands %}
+   <li style="display: inline-block;">
+      <a href="/product_list?brand={{ brand.id }}">
+         <img src="{{ brand.image.url }}" alt="{{ brand.name }}"/>
+         <p>{{ brand.name }}</p>
+      </a>
+   </li>
+   {% endfor %}
+   </ul>
+</div>
+{% endblock %}

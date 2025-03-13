@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Django Ecommerce | Cart {% endblock %}
+
+{% block content %}
+<div class="main">
+   <h1>Cart</h1>
+   <ul>
+   {% for product in products %}
+   <li>
+      <a href="/product_detail?product={{ product.product.id }}">
+         {% if product.product.image %}
+         <img src="{{ product.product.image.url }}" alt="{{ product.product.short_name }}"/>
+         {% else %}
+         <img src="{% static 'img/products/not_found.webp'%}" alt="{{ product.product.short_name }}"/>
+         {% endif %}
+         <p>
+         <strong>{{ product.product.short_name }}</strong>
+         {{ product.product.short_description }}
+      </a>
+   </li>
+      <strong>${{ product.product.format_current_price }} 
+      <a href="/remove_from_cart?product={{ product.id }}"><img src="{% static 'img/icons/minus.webp' %}" alt="Minus sign" width="15px" style="margin: 0px 15px 0px 15px;"/></a>
+      {{ product.quantity }}
+      <a href="/add_to_cart?product={{ product.product.id }}"><img src="{% static 'img/icons/plus.webp' %}" alt="Plus sign" width="15px" style="margin: 0px 15px 0px 15px;" /></a>
+       = ${{ product.total_price }}
+      </strong>
+      <span class="divider"></span>
+   {% endfor %}
+   </ul>
+   {% if products %}
+   <h1>Total: $ {{ total }}</h1>
+   <a href="/checkout"><button>Checkout</button></a>
+   {% else %}
+   <h1>is empty</h1>
+   {% endif %}
+   <p>Continue <a href="/">shopping</a></p>
+</div>
+{% endblock %}

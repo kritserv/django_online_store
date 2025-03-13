@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="{% static 'favicon.webp' %}" type="image/icon type">
+  <title>Thanks for your order!</title>
+  <link rel="stylesheet" type='text/css' href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" type='text/css' href="{% static 'css/nav.css' %}">
+  <link rel="stylesheet" type='text/css' href="{% static 'css/carousel.css' %}">
+  <link rel="stylesheet" type='text/css' href="{% static 'css/product_detail.css' %}">
+</head>
+<body>
+  <div class="main">
+    <p>
+      We appreciate your business! A confirmation email will be sent to <span id="customer-email">youremail@example.com</span>.
+
+      If you have any questions, please email <a href="mailto:orders@example.com">orders@example.com</a>.
+    </p>
+    <br/>
+    <a href="/">return</a>
+  </div>
+</body>
+</html>

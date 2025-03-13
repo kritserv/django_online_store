@@ -8,8 +8,6 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt --no-cache-dir
 COPY . /app 
 ENTRYPOINT ["python3"] 
-RUN python3 manage.py migrate
-RUN python3 manage.py loaddata dumped_data.json
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
 
 FROM builder as dev-envs

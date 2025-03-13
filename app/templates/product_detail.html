@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Django Ecommerce | {{ product.short_name }}{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="container_box">
+
+        <div class="container">
+        <div class="single-product">
+            <div class="row">
+                <div class="col-6">
+                    <div class="product-image">
+                        <div class="product-image-main">
+                            {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.short_name }} image" id="product-main-image">
+                            {% else %}
+                            <img src="{% static 'img/products/not_found.webp'%}" alt="{{ product.short_name }} image" id="product-main-image">
+                            {% endif %}
+                        </div>
+                        <div class="product-image-slider">
+                            {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.short_name }} image"  class="image-list">
+                            {% else %}
+                            <img src="{% static 'img/products/not_found.webp'%}" alt="{{ product.short_name }} image" class="image-list">
+                            {% endif %}
+                        	{% for carousel in product.carousel.all %}
+                            <img src="{{ carousel.image.url }}" alt="{{ product.short_name }} image"  class="image-list">
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+
+                    <div class="product">
+                        <div class="product-title">
+                            <h2>{{ product.name }}</h2>
+                        </div>
+                        <div class="product-rating">
+                            {{ stars }}<span> ⭐</span>
+                            <span class="review">({{ product.review.count }} Review)</span>
+                        </div>
+                        {% if product.format_original_price > product.format_current_price %}
+                        <div class="product-price">
+                            <span class="offer-price">$ {{ product.format_current_price }}</span>
+                            <span class="sale-price">$ {{ product.format_original_price }}</span>
+                        </div>
+                        <p>({{ product.discount_percentage }}% off)</p>
+                        {% else %}
+                        <div class="product-price">
+                            <span class="offer-price">$ {{ product.format_current_price }}</span>
+                        </div>
+                        {% endif %}
+
+                        <div class="product-btn-group">
+                            <a href="/add_to_cart?product={{ product.id }}"><div class="button add-cart"><img src="{% static 'img/icons/cart.webp' %}" alt="Cart icon"/> Add to cart</a></div>
+                        </div>
+                        <h1>Available: {{ product.available_quantity }}</h1>
+                        <span class="divider"></span>
+
+                        <div class="product-details">
+                            <h2>Description</h2>
+                            <p>{{ product.description }}</p>
+                            <br/>
+                            <h3>Detail</h3>
+                            {% for field, detail in detail_fields %}
+                                <p>{{ field }}: {{ detail }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <form>
+        <input type="hidden" name="product" value="{{ product.id }}" />
+        <label>Leave a review ⭐</label>
+        <input type="number" name="star" value="5" min="0" max="5" />
+        <br/>
+        <br/>
+        <label>Image Link</label>
+        <input type="text" name="image" />
+        <br/>
+        <br/>
+        <label>Comment</label>
+        <input type="text" name="comment"/>
+        <button type="submit">Post</button>
+    </form>
+    <span class="divider"></span>
+    <h2>Review</h2>
+    <ul>
+        {% for review in product.review.all %}
+        <li>
+            {% if review.image_link %}
+            <img src="{{ review.image_link }}" alt="{{ product.short_name }} review image" width="200px">
+            {% endif %}
+            <p><strong>{{ review.user.username }}</strong></p>
+            <p>⭐ {{review.star }} {{ review.comment }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

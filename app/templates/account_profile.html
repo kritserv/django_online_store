@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Django Ecommerce | Profile{% endblock %}
+
+{% block content %}
+<div class="main">
+   <h1>Hello, {{ user.username }}!</h1>
+
+   <form action="{% url 'logout' %}" method="post">
+	    {% csrf_token %}
+	    <button type="submit">Log Out</button>
+	</form>
+
+   <br/>
+   <p>Continue <a href="/">shopping</a></p>
+   <br/>
+   <h2>Settings</h2>
+   <p>Change Password: <a href="/password_change">here</a></p>
+   <p>Delete Account: <a href="/delete_account">here</a></p>
+
+
+</div>
+{% endblock %}
