@@ -228,7 +228,7 @@ def product_detail(request):
             product.review.add(product_review)
 
     stars = '0.0'
-    detail_fields = ((field, getattr(product, field)) for field in product.category.filter_field.split(','))
+    detail_fields = ((field, getattr(product, field)) for field in product.category.detail_field.split(','))
     if product.review.count():
         stars = "{0:,.2f}".format(sum([review.star for review in product.review.all()])/product.review.count())
     return render(request, "product_detail.html", context={
