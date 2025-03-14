@@ -1,5 +1,9 @@
 ## Online Ecommerce Shop example using Django SQLite
 
+
+https://github.com/user-attachments/assets/7e9353f3-2284-4862-8f53-9b67ed3ff742
+
+
 some feature: 
 
 - Filter product form
